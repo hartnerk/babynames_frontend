@@ -12,6 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // VIEWS
 import LoginPage from './views/auth/LoginPage'
 import UserProfilePage from './views/app/UserProfilePage'
+import NameDetailsPage from './views/app/NameDetailsPage';
+import SignupPage from './views/auth/SignupPage';
 
 
 
@@ -24,6 +26,8 @@ function App() {
         <Switch>
           <Route path='/login' component={LoginPage} exact />
           <Route path='/user-profile' component={UserProfilePage} exact />
+          <Route path='/name-detail' component={NameDetailsPage} />
+          <Route path='/signup' component={SignupPage} />
         </Switch>
       </Router>
     </div>
