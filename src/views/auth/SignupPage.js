@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Alert from 'react-bootstrap/Alert'
+
 
 function SignupPage() {
   const [email, setEmail] = useState('')
