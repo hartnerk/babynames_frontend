@@ -14,6 +14,7 @@ import LoginPage from './views/auth/LoginPage'
 import UserProfilePage from './views/app/UserProfilePage'
 import NameDetailsPage from './views/app/NameDetailsPage';
 import SignupPage from './views/auth/SignupPage';
+import SwiperPage from './views/app/SwiperPage/SwiperPage';
 
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path='/user-profile' component={UserProfilePage} exact />
           <Route path='/name-detail' component={NameDetailsPage} />
           <Route path='/signup' component={SignupPage} />
+          <Route path='/swiper' component={SwiperPage} />
         </Switch>
       </Router>
     </div>

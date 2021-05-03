@@ -1,0 +1,30 @@
+.deck {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+  color: white;
+}
+
+.swipe {
+  position: absolute;
+}
+
+.card {
+  width: 20vw;
+  height: 30vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.name {
+  height: fit-content;
+  font-size: 40px;
+}
