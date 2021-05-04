@@ -9,8 +9,8 @@ import Alert from 'react-bootstrap/Alert'
 
 function SignupPage() {
   const [email, setEmail] = useState('')
-  const [password1, setPassword1] = useState('')
-  const [password2, setPassword2] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [errors, setErrors] = useState(false)
   const [loading, setLoading] = useState(true)
 
@@ -26,21 +26,31 @@ function SignupPage() {
     e.preventDefault()
 
     const user = {
+      username: username,
       email: email,
-      password1: password1,
-      password2: password2
+      password: password,
     }
 
     try {
+
+      var formBody = [];
+      for (var property in user) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(user[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+      }
+
+      formBody = formBody.join("&");
+
         let init ={
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: JSON.stringify(user)
+            body: formBody
         }
         console.log("FETCH REGISTER USER CALLED")
-        let response = await fetch('http://127.0.0.1:8000/api/v1/users/auth/register/', init)
+        let response = await fetch('http://127.0.0.1:8000/users/users/', init)
         if (response.ok){
             alert("USER SIGNED UP")
         }
@@ -56,6 +66,17 @@ function SignupPage() {
       {loading === false && <h2>Signup</h2>}
       {errors === true && <Alert variant="warning">Cannot signup with provided credentials</Alert>}
       <Form onSubmit={onSubmit}>
+
+      <Form.Group>
+        <Form.Label htmlFor='username'>Username:</Form.Label>
+        <Form.Control
+          name='username'
+          type='text'
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          required
+        />
+        </Form.Group>
         <Form.Group>
             <Form.Label htmlFor='email'>Email address:</Form.Label>
             <Form.Control
@@ -67,25 +88,16 @@ function SignupPage() {
             />
         </Form.Group>
         <Form.Group>
-        <Form.Label htmlFor='password1'>Password:</Form.Label> <br />
+        <Form.Label htmlFor='password'>Password:</Form.Label> <br />
         <Form.Control
-          name='password1'
+          name='password'
           type='password'
-          value={password1}
-          onChange={e => setPassword1(e.target.value)}
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           required
         />
         </Form.Group>
-        <Form.Group>
-        <Form.Label htmlFor='password2'>Confirm password:</Form.Label>
-        <Form.Control
-          name='password2'
-          type='password'
-          value={password2}
-          onChange={e => setPassword2(e.target.value)}
-          required
-        />
-        </Form.Group>
+       
         <Button variant='primary' type='submit'>Sign Up</Button>
       </Form>
     </Container>
