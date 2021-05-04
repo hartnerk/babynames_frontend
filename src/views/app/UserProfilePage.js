@@ -25,7 +25,7 @@ function UserProfilePage() {
     }
 
   useEffect(() => {
-    if (localStorage.getItem('token') === null) {
+    if (localStorage.getItem('access_token') === null) {
       window.location.replace('http://localhost:3000/login');
     } else {
 

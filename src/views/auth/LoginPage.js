@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 
 
 function LoginPage ({history}) {
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -23,11 +23,11 @@ function LoginPage ({history}) {
   async function onSubmit(e) {
     e.preventDefault()
     const user = {
-      username: email,
+      username: username,
       password: password,
       grant_type: "password",
-      client_id:'qpSs61fXHZJn6Z5VsY3lBTeTSe79DNiLoQHKQxak',
-      client_secret:'7pOsDVjFYCqRMLNoWTTHBEkE5OixPOwYEeCdt2ztIM1xsvE7iZLSmCl1xsaEHLdgIsmJ5TY5YckjHumQnMiLiIX3HPvIRoE9i98mMOUGLywZd6IWblWbpAu2bwLcgvYD'
+      client_id:'xWILTFAezcV2kSPRe7Q4vaO0LIsX5TtLhrAjwwF2',
+      client_secret:'KTc4oWUeSIEw2nkbewM1mcTq3uYOOgD1m9THfULxld7Kj3Yb0oXnJRIEwTozSG6soRdte50kSMEDqYVFAf7duEt5mnOO4Uik0572yCtRJjPvKcPdCaVon08WdkQkFn14'
     }
 
     try {
@@ -56,7 +56,7 @@ function LoginPage ({history}) {
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('refresh_token', data.refresh_token);
           } else {
-            setEmail('')
+            setUsername('')
             setPassword('')
             localStorage.clear()
             setErrors(true)
@@ -75,13 +75,13 @@ function LoginPage ({history}) {
         <Container>
             <Form onSubmit={onSubmit}>
                 <Form.Group>
-                    <Form.Label htmlFor='email'>Email address:</Form.Label>
+                    <Form.Label htmlFor='email'>Username:</Form.Label>
                     <Form.Control
-                        name='email'
+                        name='username'
                         type='text'
-                        value={email}
+                        value={username}
                         required
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={e => setUsername(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group>
