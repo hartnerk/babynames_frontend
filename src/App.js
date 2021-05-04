@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // COMPONENTS
 import TopNav from './components/TopNav'
-import Button from 'react-bootstrap/Button'
 
 // STYLESHEETS
 import 'bootstrap/dist/css/bootstrap.min.css'
