@@ -10,28 +10,37 @@ const LikedNamePage = () => {
   const [loading, setLoading] = useState(true)
   const [likedNames, setLikedNames] = useState([])
 
-  const getLikedNames = async (coupleID) => {
+  const fetchNameFromID = async (nameID) => {
     try {
-      let couplesNames = []
-      //const response = await fetch(`http://localhost:8000/users/couples/${coupleID}/liked-names/`)
-      const response = await fetch(`http://localhost:8000/users/liked-names/`)
+      const response = await fetch(`http://localhost:8000/users/baby-names/${nameID}/`)
       const data = await response.json()
-      data.forEach((name) => {
-        if (name.usercouple_id === coupleID) {
-          couplesNames.push(name)
-        }
-      })
-      setLikedNames(couplesNames)
+      return data
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  const fetchNameObjs = async (userID) => {
+    try {
+      const response = await fetch(`http://localhost:8000/users/couples/${userID}/liked-names/`)
+      const data = await response.json()
+      await Promise.all(data.map(async(name) => {
+        const baby_name = await(fetchNameFromID(name.name_id))
+        name['baby_name'] = baby_name.baby_name
+      }))
+      setLikedNames(data)
       setLoading(false)
     } catch (error) {
       alert(error)
     }
   }
 
+  console.log(likedNames)
   // ** Hard coded couple ID assuming state/props is being passed from somewhere else in app
   useEffect(() => {
-    getLikedNames(1)
+    fetchNameObjs(1)
   }, [])
+
 
   const handleOnDragEnd = (result) => {
     if(!result.destination) return
@@ -58,8 +67,6 @@ const LikedNamePage = () => {
             {(provided) => (
             <ListGroup {...provided.droppableProps} ref={provided.innerRef}>
                 {likedNames.map((name, index) => {
-                  // ** UPDATE WITH URL UPDATE
-                  let baby_name = name.name_id
                   return (
                     <Draggable key={index} index={index} draggableId={index.toString()}>
                       {(provided) => (
@@ -68,7 +75,7 @@ const LikedNamePage = () => {
                           {...provided.dragHandleProps} 
                           ref={provided.innerRef}
                         >
-                          {index+1}: {baby_name}
+                          {index+1}: {name.baby_name}
                         </ListGroup.Item>
                       )
                       }
