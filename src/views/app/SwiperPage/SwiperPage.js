@@ -12,10 +12,9 @@ const SwiperPage = () => {
   const [names, setNames] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const getNames = async () => {
+  const getNames = async (coupleID) => {
     try {
-      // ** Hard coded in couple id assuming state/props for user and couple will be passed in from context, or a parent component/route
-      const response = await fetch(`http://localhost:8000/users/name-pools/1`)
+      const response = await fetch(`http://localhost:8000/users/couples/${coupleID}/name-pools/1`)
       const data = await response.json()
       setNames(data.names)
       setLoading(false)
@@ -25,22 +24,23 @@ const SwiperPage = () => {
     }
   }
 
+  // ** Hard coded in couple id assuming state/props for user and couple will be passed in from context, or a parent component/route
   useEffect(() => {
-    getNames()
+    getNames(1)
   }, []);
 
-
-  const saveLikedName = async (nameID) => {
+  const saveLikedName = async (nameID, coupleID) => {
     try {
       const newLikedName = {
         // ** Also hardcoded user id here!
         usercouple_id: 1,
         name_id: nameID
       }
-      const request = fetch(`http://localhost:8000/users/liked-names/`, {
+      const request = fetch(`http://localhost:8000/users/couples/${coupleID}/liked-names/`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
         },
         body: JSON.stringify(newLikedName)
       })
@@ -56,7 +56,7 @@ const SwiperPage = () => {
       console.log(`You disliked ${name.baby_name}`)
     } else if (direction === 'right') {
       console.log(`You liked ${name.baby_name}`)
-      saveLikedName(name.id)
+      saveLikedName(name.id, 1)
     }
   };
 
