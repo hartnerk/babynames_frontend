@@ -14,7 +14,7 @@ const SwiperPage = () => {
 
   const getNames = async () => {
     try {
-      // ** Hard coded in couple id assuming state for user and couple will be passed in from context, or a parent component/route
+      // ** Hard coded in couple id assuming state/props for user and couple will be passed in from context, or a parent component/route
       const response = await fetch(`http://localhost:8000/users/name-pools/1`)
       const data = await response.json()
       setNames(data.names)
