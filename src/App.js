@@ -14,8 +14,7 @@ import UserProfilePage from './views/app/UserProfilePage'
 import NameDetailsPage from './views/app/NameDetailsPage';
 import SignupPage from './views/auth/SignupPage';
 import SwiperPage from './views/app/SwiperPage/SwiperPage';
-import MatchPage from './views/app/MatchPage'
-import LikedNamePage from './views/app/LikedNamePage'
+
 function App() {
   return (
     <div className="App">
