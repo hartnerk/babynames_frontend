@@ -15,9 +15,6 @@ import NameDetailsPage from './views/app/NameDetailsPage';
 import SignupPage from './views/auth/SignupPage';
 import SwiperPage from './views/app/SwiperPage/SwiperPage';
 
-
-
-
 function App() {
   return (
     <div className="App">
@@ -29,6 +26,8 @@ function App() {
           <Route path='/name-detail' component={NameDetailsPage} />
           <Route path='/signup' component={SignupPage} />
           <Route path='/swiper' component={SwiperPage} />
+          <Route path='/matchpage' component={MatchPage} />
+          <Route  path='/liked-names' component={LikedNamePage}/>
         </Switch>
       </Router>
     </div>
