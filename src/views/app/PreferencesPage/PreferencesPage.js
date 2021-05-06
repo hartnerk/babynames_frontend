@@ -7,15 +7,16 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import origins_list from './origins';
 
 // CONTEXTS
-import { ProfileContext } from '../../../contexts/ProfileContext'
+//import { ProfileContext, useContext } from '../../../contexts/ProfileContext'
 
 const PreferencesPage = () => {
   const [gender, setGender] = useState('Select Gender')
   const [origin, setOrigin] = useState('Select Origin')
+  const [coupleId, setCoupleId] = useState('')
   const [partnerUser, setPartnerUser] = useState('')
   const [loading, setLoading] = useState(true) 
   const [errors, setErrors] = useState(false)
-  const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
+  //const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
 
   useEffect(() => {
     if (localStorage.getItem('access_token') == null) {
@@ -42,7 +43,7 @@ const PreferencesPage = () => {
             }, 
             body:  JSON.stringify(partnerObject)
           }
-          let response = await  fetch("http://localhost:8000/users/couples/", init)
+          let response = await  fetch("http://localhost:8000/users/set_couples/", init)
           console.log('this is your response', response)
           let data = await response.json();
           console.log('this is your data', data)
@@ -56,11 +57,10 @@ const PreferencesPage = () => {
   async function onSubmit(e) {
     e.preventDefault()
     const preferencesObject = {
-        coupleId: coupleId,
+        usercouple_id: coupleId,
         gender: gender,
         origin: origin,
     }
-
     try {
         console.log(preferencesObject)
         let init = {
@@ -71,10 +71,23 @@ const PreferencesPage = () => {
             }, 
             body: JSON.stringify(preferencesObject)
           }
-          let response = await  fetch("http://localhost:8000/users/preferences/", init)
-          console.log('this is your response', response)
-          let data = await response.json();
-          console.log('this is your data', data) 
+        let response = await fetch("http://localhost:8000/users/set_preferences/", init)
+        console.log('this is your response', response)
+        let data = await response.json();
+        console.log('this is your pref data', data) 
+
+        let init2 = {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+ localStorage.getItem('access_token')
+            }
+          }
+        let name_pool_response = await fetch("http://localhost:8000/users/pref_names/", init2)
+        console.log('this is your response', name_pool_response)
+        let name_pool_data = await name_pool_response.json();
+        console.log('this is your name pool', name_pool_data) 
+
     } catch (error) {
         alert(error)
     }
@@ -108,9 +121,10 @@ const PreferencesPage = () => {
                       onChange={e => setPartnerUser(e.target.value)}
                   />
                 </Form.Group>
-                <Button variant='primary' type='submit' >Add Partner</Button>
+                <Button variant='primary' type='submit' >Update Partner</Button>
             </Form>
           </Container>
+          <br></br>
           <Container>
             <Form onSubmit={onSubmit}>
               {/* https://github.com/sickdyd/react-search-autocomplete maybey user later */}
@@ -123,7 +137,7 @@ const PreferencesPage = () => {
                   <Dropdown.Item key="2" eventKey="F">F</Dropdown.Item>
                 </DropdownButton>
               </Form.Group>
-              <Button variant='primary' type='submit' >Set Preferences</Button>
+              <Button variant='primary' type='submit' >Update Preferences</Button>
             </Form>
           </Container>
         </div>
