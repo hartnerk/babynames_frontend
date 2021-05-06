@@ -29,7 +29,7 @@ const PreferencesPage = () => {
   async function onSubmitUser(e) {
     e.preventDefault()
     const partnerObject = {
-        partnerUserame: partnerUser
+        partnerUsername: partnerUser
     }
 
     try {
@@ -42,7 +42,7 @@ const PreferencesPage = () => {
             }, 
             body:  JSON.stringify(partnerObject)
           }
-          let response = await  fetch("http://localhost:8000/users/couples/", init)
+          let response = await  fetch("http://localhost:8000/users/set_couples/", init)
           console.log('this is your response', response)
           let data = await response.json();
           console.log('this is your data', data)

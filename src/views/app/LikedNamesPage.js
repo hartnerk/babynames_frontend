@@ -37,7 +37,7 @@ const LikedNamePage = () => {
 
   // ** Hard coded couple ID assuming state/props is being passed from somewhere else in app
   useEffect(() => {
-    fetchNameObjs(3)
+    fetchNameObjs(localStorage.getItem('couple_id'))
   }, [])
 
 

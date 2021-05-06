@@ -24,7 +24,7 @@ const MatchedNamePage = () => {
 
   const fetchMatchedNameObjs = async (userID) => {
     try {
-      const response = await fetch('http://localhost:8000/users/couples/1/liked-names/?matched=True')
+      const response = await fetch(`http://localhost:8000/users/couples/${userID}/liked-names/?matched=True`)
       const data = await response.json()
       await Promise.all(data.map(async(name) => {
         const baby_name = await(fetchMatchedNameFromID(name.name_id))
@@ -40,7 +40,7 @@ const MatchedNamePage = () => {
   console.log(matchedNames, "!!!!!!!!matchedNames!!!!!!")
   // ** Hard coded couple ID assuming state/props is being passed from somewhere else in app
   useEffect(() => {
-    fetchMatchedNameObjs(1)
+    fetchMatchedNameObjs(localStorage.getItem('couple_id'))
   }, [])
 
 
