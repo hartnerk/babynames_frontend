@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import origins_list from './origins';
 
 // CONTEXTS
 import { ProfileContext } from '../../../contexts/ProfileContext'
 
-
 const PreferencesPage = () => {
-  const [gender, setGender] = useState('')
-  const [origin, setOrigin] = useState('')
+  const [gender, setGender] = useState('Select Gender')
+  const [origin, setOrigin] = useState('Select Origin')
   const [partnerUser, setPartnerUser] = useState('')
   const [loading, setLoading] = useState(true) 
   const [errors, setErrors] = useState(false)
@@ -44,10 +46,10 @@ const PreferencesPage = () => {
           console.log('this is your response', response)
           let data = await response.json();
           console.log('this is your data', data)
-          setPartnerUser('wait for reponse')
+          // setPartnerUser('wait for reponse')
           setCoupleId('based on partnerUser')
     } catch (error) {
-        alert(error)
+        alert("Please enter a valid username")
     }
   }
 
@@ -78,6 +80,16 @@ const PreferencesPage = () => {
     }
   }
 
+  function renderOriginsDropdown() {
+    return (
+      <DropdownButton id="dropdown-basic-button" title={origin} onSelect={e => setOrigin(e)}>
+          {origins_list.map((item, index) => (
+            <Dropdown.Item key={index} eventKey={item}>{item}</Dropdown.Item>
+          ))}    
+      </DropdownButton>
+    )
+  }
+
   return (
     <div>
       {loading === false && <h1>Name Preferences</h1>}
@@ -87,14 +99,14 @@ const PreferencesPage = () => {
           <Container>
             <Form onSubmit={onSubmitUser}>
                 <Form.Group>
-                        <Form.Label htmlFor='partnerUser'>Add your Partner:</Form.Label> <br />
-                        <Form.Control
-                            name='partnerUser'
-                            type='text'
-                            value={partnerUser}
-                            required
-                            onChange={e => setPartnerUser(e.target.value)}
-                        />
+                  <Form.Label htmlFor='partnerUser'>Add your Partner:</Form.Label> <br />
+                  <Form.Control
+                      name='partnerUser'
+                      type='text'
+                      value={partnerUser}
+                      required
+                      onChange={e => setPartnerUser(e.target.value)}
+                  />
                 </Form.Group>
                 <Button variant='primary' type='submit' >Add Partner</Button>
             </Form>
@@ -103,24 +115,13 @@ const PreferencesPage = () => {
             <Form onSubmit={onSubmit}>
               {/* https://github.com/sickdyd/react-search-autocomplete maybey user later */}
               <Form.Group>
-                  <Form.Label htmlFor='origin'>Origin:</Form.Label>
-                  <Form.Control
-                      name='origin'
-                      type='text'
-                      value={origin}
-                      required
-                      onChange={e => setOrigin(e.target.value)}
-                  />
+                  {renderOriginsDropdown()}
               </Form.Group>
               <Form.Group>
-                  <Form.Label htmlFor='gender'>Gender:</Form.Label> <br />
-                  <Form.Control
-                      name='gender'
-                      type='text'
-                      value={gender}
-                      required
-                      onChange={e => setGender(e.target.value)}
-                  />
+                <DropdownButton id="dropdown-basic-button" title={gender} onSelect={e => setGender(e)}>
+                  <Dropdown.Item key="1" eventKey="M">M</Dropdown.Item>
+                  <Dropdown.Item key="2" eventKey="F">F</Dropdown.Item>
+                </DropdownButton>
               </Form.Group>
               <Button variant='primary' type='submit' >Set Preferences</Button>
             </Form>
