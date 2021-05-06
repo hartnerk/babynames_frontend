@@ -13,7 +13,7 @@ const PreferencesPage = () => {
   const [partnerUser, setPartnerUser] = useState('')
   const [loading, setLoading] = useState(true) 
   const [errors, setErrors] = useState(false)
-  const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
+  // const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
 
   useEffect(() => {
     if (localStorage.getItem('access_token') == null) {
@@ -45,7 +45,7 @@ const PreferencesPage = () => {
           let data = await response.json();
           console.log('this is your data', data)
           setPartnerUser('wait for reponse')
-          setCoupleId('based on partnerUser')
+          // setCoupleId('based on partnerUser')
     } catch (error) {
         alert(error)
     }
@@ -54,7 +54,7 @@ const PreferencesPage = () => {
   async function onSubmit(e) {
     e.preventDefault()
     const preferencesObject = {
-        coupleId: coupleId,
+        // coupleId: coupleId,
         gender: gender,
         origin: origin,
     }
