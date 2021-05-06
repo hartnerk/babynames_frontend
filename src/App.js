@@ -1,6 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+// CONTEXTS
+import { ProfileProvider } from './contexts/ProfileContext';
+
 
 // COMPONENTS
 import TopNav from './components/TopNav'
@@ -21,6 +24,7 @@ import LikedNamePage from './views/app/LikedNamePage';
 function App() {
   return (
     <div className="App">
+      <ProfileProvider>
       <Router>
         <TopNav />
         <Switch>
@@ -31,9 +35,10 @@ function App() {
           <Route path='/swiper' component={SwiperPage} />
           <Route path='/preferences' component={PreferencesPage} />
           <Route path='/matchpage' component={MatchPage} />
-          <Route  path='/liked-names' component={LikedNamePage}/>
+          <Route path='/liked-names' component={LikedNamesPage} />
         </Switch>
       </Router>
+      </ProfileProvider>
     </div>
   );
 }
