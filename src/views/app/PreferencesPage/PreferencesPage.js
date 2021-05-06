@@ -30,7 +30,7 @@ const PreferencesPage = () => {
   async function onSubmitUser(e) {
     e.preventDefault()
     const partnerObject = {
-      partnerUserame: partnerUser
+      partnerUsername: partnerUser
     }
 
     try {

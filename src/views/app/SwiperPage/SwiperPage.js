@@ -34,7 +34,7 @@ const SwiperPage = () => {
 
   useEffect(() => {
     // ** Hard coded in couple id assuming state/props for user and couple will be passed in from context, or a parent component/route
-    getNames(4)
+    getNames(localStorage.getItem('couple_id'))
   }, []);
 
   const saveLikedName = async (nameID, coupleID) => {
@@ -72,7 +72,7 @@ const SwiperPage = () => {
     } else if (direction === 'right') {
       console.log(`You liked ${name.baby_name}`)
       // ** Also hardcoded user id here!
-      saveLikedName(name.id, 4)
+      saveLikedName(name.id, localStorage.getItem('couple_id'))
     }
   };
 
