@@ -86,7 +86,7 @@ const SwiperPage = () => {
         >
           <Card
             bg='info'
-            className='card'
+            className='name-card'
             style={{
               position: 'relative'
             }}

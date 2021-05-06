@@ -3,14 +3,17 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 
+// CONTEXTS
+import { ProfileContext } from '../../../contexts/ProfileContext'
+
 
 const PreferencesPage = () => {
   const [gender, setGender] = useState('')
   const [origin, setOrigin] = useState('')
   const [partnerUser, setPartnerUser] = useState('')
-  const [coupleId, setCoupleId] = useState('')
   const [loading, setLoading] = useState(true) 
   const [errors, setErrors] = useState(false)
+  const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
 
   useEffect(() => {
     if (localStorage.getItem('access_token') == null) {
