@@ -1,6 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+// CONTEXTS
+import { ProfileProvider } from './contexts/ProfileContext';
+
 
 // COMPONENTS
 import TopNav from './components/TopNav'
@@ -21,6 +24,7 @@ import LikedNamesPage from './views/app/LikedNamesPage'
 function App() {
   return (
     <div className="App">
+      <ProfileProvider>
       <Router>
         <TopNav />
         <Switch>
@@ -34,6 +38,7 @@ function App() {
           <Route path='/liked-names' component={LikedNamesPage} />
         </Switch>
       </Router>
+      </ProfileProvider>
     </div>
   );
 }
