@@ -27,12 +27,9 @@ function App() {
           <Route path='/name-detail' component={NameDetailsPage} />
           <Route path='/signup' component={SignupPage} />
           <Route path='/swiper' component={SwiperPage} />
-<<<<<<< HEAD
           <Route path='/preferences' component={PreferencesPage} />
-=======
           <Route path='/matchpage' component={MatchPage} />
           <Route  path='/liked-names' component={LikedNamePage}/>
->>>>>>> main
         </Switch>
       </Router>
     </div>
