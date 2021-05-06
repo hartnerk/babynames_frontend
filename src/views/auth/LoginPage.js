@@ -42,12 +42,12 @@ function LoginPage ({history}) {
         let init = {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
             }, 
             body: formBody
           }
           console.log("FETCH USER LOGIN CALLED")
-          let response = await  fetch("http://localhost:8000/auth/token/", init)
+          let response = await  fetch("http://localhost:8000/auth/token", init)
           console.log('this is your response', response)
           let data = await response.json();
           console.log('this is your data', data)
@@ -64,7 +64,6 @@ function LoginPage ({history}) {
     } catch (error) {
         alert(error)
     }
-    return history.push('/user-profile')
   }
 
   return (
