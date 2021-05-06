@@ -9,10 +9,10 @@ import { useState } from 'react'
 
 
 
-function NameDetailsPage() {
+function NameDetailsPage({name}) {
     const [relatedNames, setRelatedNames] = useState()
     const [celebrityNames, setCelebrityNames] = useState()
-    const name = "Michael"
+    // const name = "Michael"
 
     async function getRelatedNames(){
         const response = await fetch(`https://www.behindthename.com/api/related.json?name=${name}&usage=eng&key=ja675945445`)
@@ -44,27 +44,22 @@ function NameDetailsPage() {
         <Container>
             <Card>
                 <Card.Body>
-
-
-                <ListGroup variant="flush">
-                <ListGroup.Item>
-                    <Card.Title>
-                        {name}
-                    </Card.Title>
-
-                    <Card.Text>
-                        Lorem Ipsum
-                    </Card.Text>
-                    </ListGroup.Item>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            <Card.Title>
+                                {name}
+                            </Card.Title>
+                        </ListGroup.Item>
                         <ListGroup.Item>
                             <strong>Related Names: </strong>
-                        <div>
-                            {relatedNames && relatedNames.map((item, index) => <span>{(index ? ', ': '') + item}</span>)}
-                        </div> 
-                        </ListGroup.Item>
-                        <ListGroup.Item><strong>Celebrities with the name {name}:</strong>
                             <div>
-                            {celebrityNames && celebrityNames.map((item, index) => <span>{(index ? ', ': '') + item.name}</span>)}
+                                {relatedNames && relatedNames.map((item, index) => <span>{(index ? ', ': '') + item}</span>)}
+                            </div> 
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Celebrities with the name {name}:</strong>
+                            <div>
+                                {celebrityNames && celebrityNames.map((item, index) => <span>{(index ? ', ': '') + item.name}</span>)}
                             </div>
                         </ListGroup.Item>
                         <ListGroup.Item>
