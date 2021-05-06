@@ -15,6 +15,8 @@ import NameDetailsPage from './views/app/NameDetailsPage';
 import SignupPage from './views/auth/SignupPage';
 import SwiperPage from './views/app/SwiperPage/SwiperPage';
 import PreferencesPage from './views/app/PreferencesPage/PreferencesPage';
+import LikedNamePage from './views/app/LikedNamePage';
+import MatchPage from './views/app/MatchPage';
 
 function App() {
   return (
