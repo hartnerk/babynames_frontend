@@ -31,8 +31,18 @@ function TopNav() {
         {isAuth === true ? (
           <Fragment>
             <NavDropdown title="Actions">
-              <Link to='/user-profile'>Profile</Link>
-              <Link onClick={handelLogout}>Logout</Link>
+              <NavDropdown.Item>
+                <Link to='/user-profile'>Profile</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to='/liked-names'>Liked Names</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to='/matchpage'>Matches</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link onClick={handelLogout}>Logout</Link>
+              </NavDropdown.Item>
             </NavDropdown>
           </Fragment>
         ) : (
