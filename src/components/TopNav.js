@@ -11,10 +11,17 @@ function TopNav() {
   const [isAuth, setIsAuth] = useState(false)
 
   useEffect(() => {
-    if (localStorage.getItem('token') !== null) {
+    if (localStorage.getItem('access_token') !== null) {
       setIsAuth(true)
     }
   }, [])
+
+  async function handelLogout(e) {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    window.location.replace('http://localhost:3000/login');
+  }
+
 
   return (
     <Navbar>
@@ -24,8 +31,18 @@ function TopNav() {
         {isAuth === true ? (
           <Fragment>
             <NavDropdown title="Actions">
-              <Link to='/user-profile'>Profile</Link>
-              <Link to='/logout'>Logout</Link>
+              <NavDropdown.Item>
+                <Link to='/user-profile'>Profile</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to='/liked-names'>Liked Names</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to='/matchpage'>Matches</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link onClick={handelLogout}>Logout</Link>
+              </NavDropdown.Item>
             </NavDropdown>
           </Fragment>
         ) : (

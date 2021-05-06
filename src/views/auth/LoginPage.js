@@ -14,7 +14,7 @@ function LoginPage ({history}) {
     
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
-      window.location.replace('http://localhost:3000/dashboard')
+      window.location.replace('http://localhost:3000/user-profile')
     } else {
       setLoading(false)
     }
@@ -64,7 +64,7 @@ function LoginPage ({history}) {
     } catch (error) {
         alert(error)
     }
-  }
+    window.location.replace('http://localhost:3000/swiper')  }
 
   return (
     <div>
