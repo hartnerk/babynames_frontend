@@ -24,7 +24,7 @@ const LikedNamePage = () => {
     try {
       const response = await fetch(`http://localhost:8000/users/couples/${coupleID}/liked-names/`)
       const data = await response.json()
-      await Promise.all(data.map(async(name) => {
+      await Promise.all( mdata.map(async(name) => {
         const baby_name = await(fetchNameFromID(name.name_id))
         name['baby_name'] = baby_name.baby_name
       }))
