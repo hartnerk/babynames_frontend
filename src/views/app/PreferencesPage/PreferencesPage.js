@@ -11,7 +11,6 @@ const PreferencesPage = () => {
   const [gender, setGender] = useState('')
   const [origin, setOrigin] = useState('')
   const [partnerUser, setPartnerUser] = useState('')
-  const [coupleId, setCoupleId] = useState('')
   const [loading, setLoading] = useState(true) 
   const [errors, setErrors] = useState(false)
   const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
