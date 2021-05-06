@@ -16,7 +16,11 @@ const PreferencesPage = () => {
   const [partnerUser, setPartnerUser] = useState('')
   const [loading, setLoading] = useState(true) 
   const [errors, setErrors] = useState(false)
+<<<<<<< HEAD
+  // const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
+=======
   //const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
+>>>>>>> main
 
   useEffect(() => {
     if (localStorage.getItem('access_token') == null) {
@@ -47,8 +51,8 @@ const PreferencesPage = () => {
           console.log('this is your response', response)
           let data = await response.json();
           console.log('this is your data', data)
+          // setCoupleId('based on partnerUser')
           // setPartnerUser('wait for reponse')
-          setCoupleId('based on partnerUser')
     } catch (error) {
         alert("Please enter a valid username")
     }
@@ -57,7 +61,8 @@ const PreferencesPage = () => {
   async function onSubmit(e) {
     e.preventDefault()
     const preferencesObject = {
-        usercouple_id: coupleId,
+        // // coupleId: coupleId,
+        // usercouple_id: coupleId,
         gender: gender,
         origin: origin,
     }

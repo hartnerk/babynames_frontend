@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
 
 // COMPONENTS
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
@@ -9,6 +12,8 @@ import { ListGroup } from 'react-bootstrap'
 const LikedNamePage = () => {
   const [loading, setLoading] = useState(true)
   const [likedNames, setLikedNames] = useState([])
+  const [newName, setnewName] = useState('')
+  const [gender, setnewGender] = useState('')
 
   const fetchNameFromID = async (nameID) => {
     try {
@@ -27,6 +32,7 @@ const LikedNamePage = () => {
       await Promise.all( data.map(async(name) => {
         const baby_name = await(fetchNameFromID(name.name_id))
         name['baby_name'] = baby_name.baby_name
+        
       }))
       setLikedNames(data)
       setLoading(false)
@@ -49,6 +55,26 @@ const LikedNamePage = () => {
     setLikedNames(items)
   }
 
+  async function onSubmitNewName(e) {
+    e.preventDefault()
+    let init = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ localStorage.getItem('access_token'),
+      }, 
+      body:  JSON.stringify({customName: newName, gender: gender})
+    }
+    try {
+      const response = await fetch(`http://localhost:8000/users/add_name/`, init)
+      const data = await response.json()
+      return data
+    } catch (error) {
+      alert(error)
+    }
+
+  }
+
   if(loading) {
     return (
       <h1>loading</h1>
@@ -61,6 +87,29 @@ const LikedNamePage = () => {
     return(
       <div>
         <h1>Your Liked Baby Names</h1>
+        <Container>
+          <Form onSubmit={onSubmitNewName}>
+              <Form.Group>
+                      <Form.Label htmlFor='newName'>Add your Name:</Form.Label> <br />
+                      <Form.Control
+                          name='newName'
+                          type='text'
+                          value={newName}
+                          required
+                          onChange={e => setnewName(e.target.value)}
+                      />
+                      <Form.Label htmlFor='gender'>Add your gender:</Form.Label> <br />
+                      <Form.Control
+                          name='gender'
+                          type='text'
+                          value={gender}
+                          required
+                          onChange={e => setnewGender(e.target.value)}
+                      />
+              </Form.Group>
+              <Button variant='primary' type='submit' >Add Partner</Button>
+          </Form>
+        </Container>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId='names'>
             {(provided) => (
@@ -89,6 +138,6 @@ const LikedNamePage = () => {
       </div>
     )
   }
-}
+// }
 
 export default LikedNamePage

@@ -19,7 +19,7 @@ import SignupPage from './views/auth/SignupPage';
 import SwiperPage from './views/app/SwiperPage/SwiperPage';
 import PreferencesPage from './views/app/PreferencesPage/PreferencesPage';
 import MatchPage from './views/app/MatchPage';
-import LikedNamePage from './views/app/LikedNamePage';
+import LikedNamesPage from './views/app/LikedNamesPage';
 
 function App() {
   return (
