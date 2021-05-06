@@ -3,18 +3,20 @@ import React, { useState, useEffect } from 'react'
 // COMPONENTS
 import TinderCard from 'react-tinder-card'
 import Card from 'react-bootstrap/Card'
+import MatchAlert from '../../../components/MatchAlert'
 
 // STYLESHEET
 import './SwiperPage.css'
 
-
 const SwiperPage = () => {
   const [names, setNames] = useState([])
   const [loading, setLoading] = useState(true)
+  const [Matched, setMatched] = useState(false)
 
   const getNames = async (coupleID) => {
     try {
-      const response = await fetch(`http://localhost:8000/users/couples/${coupleID}/name-pools/1`)
+      // ** Hard coded in couple id assuming state for user and couple will be passed in from context, or a parent component/route
+      const response = await fetch(`http://localhost:8000/users/couples/1/name-pools/1`)
       const data = await response.json()
       setNames(data.names)
       setLoading(false)
@@ -36,7 +38,7 @@ const SwiperPage = () => {
         usercouple_id: 1,
         name_id: nameID
       }
-      const request = fetch(`http://localhost:8000/users/couples/${coupleID}/liked-names/`, {
+      const request = await fetch(`http://localhost:8000/users/couples/1/liked-names/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +46,13 @@ const SwiperPage = () => {
         },
         body: JSON.stringify(newLikedName)
       })
-      return request
+      const response = await request.json()
+      if (response.matched == true) {
+        setMatched(true)
+      } else {
+        setMatched(false)
+      }
+      return response
     } catch (error) {
       alert(error)
     }
@@ -54,6 +62,7 @@ const SwiperPage = () => {
   const swiped = (direction, name) => {
     if (direction === 'left') {
       console.log(`You disliked ${name.baby_name}`)
+      setMatched(false)
     } else if (direction === 'right') {
       console.log(`You liked ${name.baby_name}`)
       saveLikedName(name.id, 1)
@@ -91,6 +100,7 @@ const SwiperPage = () => {
   return (
     <div className='deck'>
       {renderNameDeck}
+      <MatchAlert matched={Matched}></MatchAlert>
     </div>
   );
 };
