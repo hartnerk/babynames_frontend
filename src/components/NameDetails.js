@@ -59,11 +59,16 @@ function NameDetailsPage() {
                         <ListGroup.Item>
                             <strong>Related Names: </strong>
                         <div>
-                            {relatedNames && relatedNames.map((item) => <span> {item} </span>)}
+                            {relatedNames && relatedNames.map((item, index) => <span>{(index ? ', ': '') + item}</span>)}
                         </div> 
                         </ListGroup.Item>
                         <ListGroup.Item><strong>Celebrities with the name {name}:</strong>
-                            {celebrityNames && celebrityNames.map((item) => <span> {item.name} </span>)}
+                            <div>
+                            {celebrityNames && celebrityNames.map((item, index) => <span>{(index ? ', ': '') + item.name}</span>)}
+                            </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Popularity over the decades:</strong>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card.Body>
