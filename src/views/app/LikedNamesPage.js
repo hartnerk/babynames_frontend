@@ -75,15 +75,15 @@ const LikedNamePage = () => {
 
   }
 
-  // if(loading) {
-  //   return (
-  //     <h1>loading</h1>
-  //   )
-  // } else if(likedNames.length < 1) {
-  //   return (
-  //     <h1>You don't have any liked names yet.</h1>
-  //   )
-  // } else {
+  if(loading) {
+    return (
+      <h1>loading</h1>
+    )
+  } else if(likedNames.length < 1) {
+    return (
+      <h1>You don't have any liked names yet.</h1>
+    )
+  } else {
     return(
       <div>
         <h1>Your Liked Baby Names</h1>
