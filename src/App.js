@@ -16,9 +16,6 @@ import SignupPage from './views/auth/SignupPage';
 import SwiperPage from './views/app/SwiperPage/SwiperPage';
 import PreferencesPage from './views/app/PreferencesPage/PreferencesPage';
 
-
-
-
 function App() {
   return (
     <div className="App">
@@ -30,7 +27,12 @@ function App() {
           <Route path='/name-detail' component={NameDetailsPage} />
           <Route path='/signup' component={SignupPage} />
           <Route path='/swiper' component={SwiperPage} />
+<<<<<<< HEAD
           <Route path='/preferences' component={PreferencesPage} />
+=======
+          <Route path='/matchpage' component={MatchPage} />
+          <Route  path='/liked-names' component={LikedNamePage}/>
+>>>>>>> main
         </Switch>
       </Router>
     </div>
