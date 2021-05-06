@@ -25,19 +25,19 @@ function App() {
   return (
     <div className="App">
       <ProfileProvider>
-      <Router>
-        <TopNav />
-        <Switch>
-          <Route path='/login' component={LoginPage} exact />
-          <Route path='/user-profile' component={UserProfilePage} exact />
-          <Route path='/name-detail' component={NameDetails} />
-          <Route path='/signup' component={SignupPage} />
-          <Route path='/swiper' component={SwiperPage} />
-          <Route path='/preferences' component={PreferencesPage} />
-          <Route path='/matchpage' component={MatchPage} />
-          <Route path='/liked-names' component={LikedNamesPage} />
-        </Switch>
-      </Router>
+        <Router>
+          <TopNav />
+          <Switch>
+            <Route path='/login' component={LoginPage} exact />
+            <Route path='/user-profile' component={UserProfilePage} exact />
+            <Route path='/name-detail' component={NameDetails} exact />
+            <Route path='/signup' component={SignupPage} exact />
+            <Route path='/swiper' component={SwiperPage} exact />
+            <Route path='/preferences' component={PreferencesPage} exact />
+            <Route path='/liked-names' component={LikedNamesPage} exact />
+            <Route path='/matchpage' component={MatchPage} exact />
+          </Switch>
+        </Router>
       </ProfileProvider>
     </div>
   );

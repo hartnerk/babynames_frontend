@@ -34,14 +34,15 @@ const SwiperPage = () => {
 
   useEffect(() => {
     // ** Hard coded in couple id assuming state/props for user and couple will be passed in from context, or a parent component/route
-    getNames(3)
+    getNames(4)
   }, []);
 
   const saveLikedName = async (nameID, coupleID) => {
     try {
       const newLikedName = {
         usercouple_id: coupleID,
-        name_id: nameID
+        name_id: nameID,
+        order: nameID
       }
       const request = await fetch(`http://localhost:8000/users/couples/${coupleID}/liked-names/`, {
         method: 'POST',
@@ -71,7 +72,7 @@ const SwiperPage = () => {
     } else if (direction === 'right') {
       console.log(`You liked ${name.baby_name}`)
       // ** Also hardcoded user id here!
-      saveLikedName(name.id, 3)
+      saveLikedName(name.id, 4)
     }
   };
 
