@@ -54,7 +54,7 @@ function SignupPage() {
         if (response.ok){
             alert("USER SIGNED UP")
         }
-
+        window.location.replace('http://localhost:3000/login')
     } catch (error) {
         alert(error)
     }
