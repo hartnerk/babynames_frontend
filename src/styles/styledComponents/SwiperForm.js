@@ -1,13 +1,16 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import formlogo from '../resources/binkylogosmall.png'
 
+
+// ** Image is a little fuzzy.  Would like to try to fix that. **
+// ** Also would like to add a cooler animation on the logo **
 const SwiperForm = styled.form`
   height: 70vh;
   width: 50vh;
   border-radius: 25px;
   background-color: ${({ theme }) => theme.page};
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+  }
 `
 
 const SwiperFormTitle = styled.div`
@@ -80,26 +83,6 @@ const SwiperLink = styled(Link)`
   }
 `
 
-// ** Image is a little fuzzy.  Would like to try to fix that. **
-// ** Also would like to add a cooler animation on the logo **
-const FormLogo = styled.div`
-  background-image: url(${formlogo});
-  height: 13vh;
-  width: 13vh;
-  border-radius: 50%;
-  position: absolute;
-  z-index: 1;
-  margin-bottom: 67vh;
-  margin-right: 47vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-
-  &:hover {
-    transform: rotate(-20deg);
-  }
-`
 
 export {
   SwiperForm,
@@ -109,5 +92,4 @@ export {
   SwiperFormButton,
   SwiperRedirect,
   SwiperLink,
-  FormLogo,
 }
