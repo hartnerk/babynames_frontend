@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // STYLESHEETS
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup , ButtonGroup } from 'react-bootstrap'
 
 const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
@@ -99,6 +99,26 @@ const LikedNamesPage = () => {
     }
   }
 
+  async function deleteName(e) {
+    e.preventDefault()
+    console.log('her hre', e)
+    try {
+        const init = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+          },
+          body: JSON.stringify({customName: e.target.value})
+        }
+        const saveRequest = await fetch (`http://localhost:8000/users/deletelikedname`, init)
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
+
+
   if(loading) {
     return (
       <h1>loading</h1>
@@ -123,13 +143,11 @@ const LikedNamesPage = () => {
                           onChange={e => setnewName(e.target.value)}
                       />
                       <Form.Label htmlFor='gender'>Add your gender:</Form.Label> <br />
-                      <Form.Control
-                          name='gender'
-                          type='text'
-                          value={gender}
-                          required
-                          onChange={e => setnewGender(e.target.value)}
-                      />
+                      <ButtonGroup aria-label="Basic example"  name='gender' onChange={e => setnewGender(e.target.value)}>
+                          <Button value='m' variant="secondary">Male</Button>
+                          <Button value='f' variant="secondary">Female</Button>
+                      </ButtonGroup>
+
               </Form.Group>
               <Button variant='primary' type='submit' >Add Name</Button>
           </Form>
@@ -148,6 +166,7 @@ const LikedNamesPage = () => {
                           ref={provided.innerRef}
                         >
                           {index+1}: {name.baby_name}
+                          <Button variant='primary'  color='red' value={name.baby_name} onClick={(e) => deleteName(e)}>X</Button>
                         </ListGroup.Item>
                       )
                       }
