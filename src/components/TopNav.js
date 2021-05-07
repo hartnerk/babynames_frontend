@@ -24,7 +24,7 @@ function TopNav() {
 
 
   return (
-    <Navbar style={{ position: 'fixed' }}>
+    <Navbar>
       <Navbar.Brand>Baby Name Matcher</Navbar.Brand>
       <Navbar.Collapse>
         <Nav className="mr-auto">

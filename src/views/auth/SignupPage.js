@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react'
 import Alert from 'react-bootstrap/Alert'
 
 // STYLES
-import { SwiperForm, SwiperFormTitle, SwiperFormFieldContainer, SwiperFormField, SwiperFormButton, SwiperRedirect, SwiperLink, FormLogo }
-  from '../../styles/styledComponents/SwiperForm'
+import { SwiperForm, SwiperFormTitle, SwiperFormFieldContainer, SwiperFormField, SwiperFormButton, SwiperRedirect, SwiperLink } from '../../styles/styledComponents/SwiperForm'
 import { AuthContainer } from '../../styles/styledComponents/AuthContainer'
+import logo from '../../styles/resources/binkylogo.png'
 
 
 function SignupPage() {
@@ -66,7 +66,7 @@ function SignupPage() {
   return (
     <AuthContainer>
       { errors === true && <Alert variant="warning">Cannot signup with provided credentials</Alert>}
-      <FormLogo />
+      <img className='logoimg' src={logo} />
       <SwiperForm onSubmit={onSubmit}>
         <SwiperFormTitle>baby swiper</SwiperFormTitle>
         <SwiperFormFieldContainer>
