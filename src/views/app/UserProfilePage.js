@@ -21,6 +21,8 @@ function UserProfilePage() {
             const data = await response.json()
             // setUserEmail(response.email)
             localStorage.setItem('couple_id', data.id);
+            localStorage.setItem('user_id', data.user_id);
+            localStorage.setItem('username', data.username);
             setLoading(false)
             
         } catch (error) {
@@ -43,7 +45,7 @@ function UserProfilePage() {
       {loading === false && (
         <Fragment>
           <h1>User Profile</h1>
-          <h2>Hello {userEmail}!</h2>
+          <h2>Hello {localStorage.getItem('username')}!</h2>
         </Fragment>
       )}
     </div>
