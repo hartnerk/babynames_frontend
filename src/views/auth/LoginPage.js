@@ -26,8 +26,8 @@ function LoginPage ({history}) {
       username: username,
       password: password,
       grant_type: "password",
-      client_id:'xWILTFAezcV2kSPRe7Q4vaO0LIsX5TtLhrAjwwF2',
-      client_secret:'KTc4oWUeSIEw2nkbewM1mcTq3uYOOgD1m9THfULxld7Kj3Yb0oXnJRIEwTozSG6soRdte50kSMEDqYVFAf7duEt5mnOO4Uik0572yCtRJjPvKcPdCaVon08WdkQkFn14'
+      client_id:'EFxYCY1OrypZMyz6fXrwbqpJKsH1Lqu0wyk04p5Q',
+      client_secret:'fSlxzsT1wjZJrhv57EpdWnbbuIgwoWzeJMytkGwa41BuHhDJiwdZnBpKc1tlJfybIAko2OX65QRuN3G3V4U4kbThicRQgbx01QAOGdZ33UHKZXIzbFUXkeUUHh92sGSo'
     }
 
     try {
