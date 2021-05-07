@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 // COMPONENTS
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
-import { Link } from 'react-router-dom'
 
 // STYLES
 import { SwiperForm, SwiperFormTitle, SwiperFormFieldContainer, SwiperFormField, SwiperFormButton, SwiperRedirect, SwiperLink, FormLogo }
@@ -70,8 +66,10 @@ function SignupPage() {
   return (
     <AuthContainer>
       { errors === true && <Alert variant="warning">Cannot signup with provided credentials</Alert>}
+      <FormLogo>
+        logo
+      </FormLogo>
       <SwiperForm onSubmit={onSubmit}>
-        <FormLogo />
         <SwiperFormTitle>baby swiper</SwiperFormTitle>
         <SwiperFormFieldContainer>
           <SwiperFormField

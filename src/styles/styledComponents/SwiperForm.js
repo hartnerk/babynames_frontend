@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import '../resources/binkylogo.png'
 
 const SwiperForm = styled.form`
   height: 70vh;
@@ -80,8 +79,17 @@ const SwiperLink = styled(Link)`
   }
 `
 
-const FormLogo = styled.img`
-
+const FormLogo = styled.div`
+  background-image: url('../resources/binkylogo.jpg');
+  height: 13vh;
+  width: 13vh;
+  background-color: ${({ theme }) => theme.page};
+  border: 2px solid ${({ theme }) => theme.darkest};
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  margin-bottom: 67vh;
+  margin-right: 47vh;
 `
 
 export {
