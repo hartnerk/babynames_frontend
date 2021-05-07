@@ -8,7 +8,7 @@ import { ProfileProvider } from './contexts/ProfileContext'
 // COMPONENTS
 import TopNav from './components/TopNav'
 
-// STYLESHEETS
+// STYLES
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './styles/Theme'

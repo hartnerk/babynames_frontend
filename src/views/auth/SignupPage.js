@@ -5,6 +5,12 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
+import { Link } from 'react-router-dom'
+
+// STYLES
+import { SwiperForm, SwiperFormTitle, SwiperFormFieldContainer, SwiperFormField, SwiperFormButton, SwiperRedirect, SwiperLink, FormLogo }
+  from '../../styles/styledComponents/SwiperForm'
+import { AuthContainer } from '../../styles/styledComponents/AuthContainer'
 
 
 function SignupPage() {
@@ -42,65 +48,65 @@ function SignupPage() {
 
       formBody = formBody.join("&");
 
-        let init ={
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formBody
-        }
-        console.log("FETCH REGISTER USER CALLED")
-        let response = await fetch('http://127.0.0.1:8000/users/users/', init)
-        if (response.ok){
-            alert("USER SIGNED UP")
-        }
-        window.location.replace('http://localhost:3000/login')
+      let init = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formBody
+      }
+      console.log("FETCH REGISTER USER CALLED")
+      let response = await fetch('http://127.0.0.1:8000/users/users/', init)
+      if (response.ok) {
+        alert("USER SIGNED UP")
+      }
+      window.location.replace('http://localhost:3000/login')
     } catch (error) {
-        alert(error)
+      alert(error)
     }
-      
+
   }
 
   return (
-    <Container>
-      {loading === false && <h2>Signup</h2>}
-      {errors === true && <Alert variant="warning">Cannot signup with provided credentials</Alert>}
-      <Form onSubmit={onSubmit}>
-
-      <Form.Group>
-        <Form.Label htmlFor='username'>Username:</Form.Label>
-        <Form.Control
-          name='username'
-          type='text'
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-        />
-        </Form.Group>
-        <Form.Group>
-            <Form.Label htmlFor='email'>Email address:</Form.Label>
-            <Form.Control
+    <AuthContainer>
+      { errors === true && <Alert variant="warning">Cannot signup with provided credentials</Alert>}
+      <SwiperForm onSubmit={onSubmit}>
+        <FormLogo />
+        <SwiperFormTitle>baby swiper</SwiperFormTitle>
+        <SwiperFormFieldContainer>
+          <SwiperFormField
+            name='username'
+            type='text'
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            required
+            placeholder='username'
+          />
+          <SwiperFormField
             name='email'
             type='email'
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
-            />
-        </Form.Group>
-        <Form.Group>
-        <Form.Label htmlFor='password'>Password:</Form.Label> <br />
-        <Form.Control
-          name='password'
-          type='password'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-        </Form.Group>
-       
-        <Button variant='primary' type='submit'>Sign Up</Button>
-      </Form>
-    </Container>
+            placeholder='email address'
+          />
+          <SwiperFormField
+            name='password'
+            type='password'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+            placeholder='password'
+          />
+          <SwiperFormButton type='submit'>Sign Up</SwiperFormButton>
+          <SwiperRedirect>
+            Already have an account?
+            <br />
+            Log in <SwiperLink className='swiper-link' to='/login'>here.</SwiperLink>
+          </SwiperRedirect>
+        </SwiperFormFieldContainer>
+      </SwiperForm>
+    </AuthContainer >
   )
 }
 

@@ -24,39 +24,39 @@ function TopNav() {
 
 
   return (
-    <Navbar>
+    <Navbar style={{ position: 'fixed' }}>
       <Navbar.Brand>Baby Name Matcher</Navbar.Brand>
       <Navbar.Collapse>
         <Nav className="mr-auto">
-        {isAuth === true ? (
-          <Fragment>
-            <NavDropdown title="Actions">
-              <NavDropdown.Item>
-                <Link to='/user-profile'>Profile</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to='/liked-names'>Liked Names</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to='/matchpage'>Matches</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link onClick={handelLogout}>Logout</Link>
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <NavDropdown title="Actions">
-              <NavDropdown.Item>
-                <Link to='/login'>Login</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to='/signup'>Signup</Link>
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Fragment>
-        )}
+          {isAuth === true ? (
+            <Fragment>
+              <NavDropdown title="Actions">
+                <NavDropdown.Item>
+                  <Link to='/user-profile'>Profile</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to='/liked-names'>Liked Names</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to='/matchpage'>Matches</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link onClick={handelLogout}>Logout</Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <NavDropdown title="Actions">
+                <NavDropdown.Item>
+                  <Link to='/login'>Login</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to='/signup'>Signup</Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Fragment>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
