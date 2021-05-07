@@ -30,6 +30,7 @@ const MatchedNamePage = () => {
         const baby_name = await(fetchMatchedNameFromID(name.name_id))
         name['baby_name'] = baby_name.baby_name
       }))
+      data.sort((a, b) => (a.order > b.order) ? 1 : -1)
       setMatchedNames(data)
       setLoading(false)
     } catch (error) {

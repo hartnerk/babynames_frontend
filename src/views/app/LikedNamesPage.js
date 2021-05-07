@@ -74,14 +74,13 @@ const LikedNamesPage = () => {
     }
   }
 
-  const saveNamesOrder = (coupleID) => {
+  const saveNamesOrder = (userID) => {
     try {
       likedNames.map(async (name, index) => {
         const nameObj = {
           id: name.id,
-          usercouple_id: coupleID,
+          user_id: userID,
           name_id: name.name_id,
-          matched: name.matched,
           order: index
         }
         const init = {
@@ -92,9 +91,29 @@ const LikedNamesPage = () => {
           },
           body: JSON.stringify(nameObj)
         }
-        const saveRequest = await fetch (`http://localhost:8000/users/couples/${coupleID}/liked-names/${name.id}/`, init)
+        const saveRequest = await fetch(`http://localhost:8000/users/user_info/${userID}/user-likes/${name.id}/`, init)
       })
     } catch (error) {
+      console.log(error)
+    }
+    setMatchOrder()
+  }
+
+  async function setMatchOrder() {
+    let init = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ localStorage.getItem('access_token'),
+      }, 
+      body:  JSON.stringify({})
+    }
+    try {
+      const response = await fetch(`http://localhost:8000/users/match_order/`, init)
+      const data = await response.json()
+      console.log(data)
+    }
+    catch(error) {
       console.log(error)
     }
   }
@@ -178,7 +197,7 @@ const LikedNamesPage = () => {
             )}
           </Droppable>
         </DragDropContext>
-        <Button variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('couple_id'))}>Save Order</Button>
+        <Button variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('user_id'))}>Save Order</Button>
       </div>
     )
   }
