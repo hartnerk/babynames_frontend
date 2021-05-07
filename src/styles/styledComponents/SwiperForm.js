@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import formlogo from '../resources/binkylogosmall.png'
 
 const SwiperForm = styled.form`
   height: 70vh;
@@ -25,7 +26,7 @@ const SwiperFormFieldContainer = styled.div`
   font-size: 2.5vh;
   font-weight: 300;
 `
-
+// ** Figure out background fill color with text inputed.  Would like to remove or change. **
 const SwiperFormField = styled.input`
   width: 80%;
   border: 2px solid ${({ theme }) => theme.dark};
@@ -79,17 +80,25 @@ const SwiperLink = styled(Link)`
   }
 `
 
+// ** Image is a little fuzzy.  Would like to try to fix that. **
+// ** Also would like to add a cooler animation on the logo **
 const FormLogo = styled.div`
-  background-image: url('../resources/binkylogo.jpg');
+  background-image: url(${formlogo});
   height: 13vh;
   width: 13vh;
-  background-color: ${({ theme }) => theme.page};
-  border: 2px solid ${({ theme }) => theme.darkest};
   border-radius: 50%;
   position: absolute;
   z-index: 1;
   margin-bottom: 67vh;
   margin-right: 47vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    transform: rotate(-20deg);
+  }
 `
 
 export {
