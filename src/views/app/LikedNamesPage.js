@@ -111,7 +111,7 @@ const LikedNamesPage = () => {
           },
           body: JSON.stringify({customName: e.target.value})
         }
-        const saveRequest = await fetch (`http://localhost:8000/users/deletelikedname`, init)
+        const saveRequest = await fetch (`http://localhost:8000/users/deletelikedname/`, init)
       } catch (error) {
         console.log(error)
       }
