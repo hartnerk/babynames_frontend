@@ -47,6 +47,7 @@ const PreferencesPage = () => {
       console.log('this is your response', response)
       let data = await response.json();
       console.log('this is your data', data)
+      localStorage.setItem('couple_id', data.id)
       // setCoupleId('based on partnerUser')
       // setPartnerUser('wait for reponse')
     } catch (error) {
