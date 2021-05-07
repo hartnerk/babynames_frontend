@@ -1,4 +1,4 @@
-/* .deck {
+.deck {
   display: flex;
   justify-content: center;
   margin-top: 10vh;
@@ -27,4 +27,4 @@
 .name {
   height: fit-content;
   font-size: 40px;
-} */
+}

@@ -34,6 +34,7 @@ const LikedNamesPage = () => {
         name['baby_name'] = baby_name.baby_name
         
       }))
+      data.sort((a, b) => (a.order > b.order) ? 1 : -1)
       setLikedNames(data)
       setLoading(false)
     } catch (error) {
@@ -41,7 +42,6 @@ const LikedNamesPage = () => {
     }
   }
 
-  // ** Hard coded couple ID assuming state/props is being passed from somewhere else in app
   useEffect(() => {
     fetchNameObjs(localStorage.getItem('couple_id'))
   }, [])
@@ -72,7 +72,31 @@ const LikedNamesPage = () => {
     } catch (error) {
       alert(error)
     }
+  }
 
+  const saveNamesOrder = (coupleID) => {
+    try {
+      likedNames.map(async (name, index) => {
+        const nameObj = {
+          id: name.id,
+          usercouple_id: coupleID,
+          name_id: name.name_id,
+          matched: name.matched,
+          order: index
+        }
+        const init = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+          },
+          body: JSON.stringify(nameObj)
+        }
+        const saveRequest = await fetch (`http://localhost:8000/users/couples/${coupleID}/liked-names/${name.id}/`, init)
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   if(loading) {
@@ -107,7 +131,7 @@ const LikedNamesPage = () => {
                           onChange={e => setnewGender(e.target.value)}
                       />
               </Form.Group>
-              <Button variant='primary' type='submit' >Add Partner</Button>
+              <Button variant='primary' type='submit' >Add Name</Button>
           </Form>
         </Container>
         <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -135,6 +159,7 @@ const LikedNamesPage = () => {
             )}
           </Droppable>
         </DragDropContext>
+        <Button variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('couple_id'))}>Save Order</Button>
       </div>
     )
   }
