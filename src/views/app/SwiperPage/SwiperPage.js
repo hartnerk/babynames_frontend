@@ -52,11 +52,7 @@ const SwiperPage = () => {
         body: JSON.stringify(newLikedName1)
       })
       const response1 = await request1.json()
-      if (response1.matched == true) {
-        setMatched(true)
-      } else {
-        setMatched(false)
-      }
+
       const newLikedName2 = { // POST TO USER LIKED NAMES
         user_id: userID,
         name_id: nameID,
@@ -72,6 +68,14 @@ const SwiperPage = () => {
       })
       const response2 = await request2.json()
       console.log('POST to user liked names: ', response2)
+
+
+      if (response1.matched == true) {
+        setMatched(true)
+      } else {
+        setMatched(false)
+      }
+      
 
 
       return response1
