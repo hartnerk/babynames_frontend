@@ -57,6 +57,7 @@ function LoginPage({ history }) {
         localStorage.clear();
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('refresh_token', data.refresh_token);
+        localStorage.setItem('name_index', 0);
       } else {
         setUsername('')
         setPassword('')

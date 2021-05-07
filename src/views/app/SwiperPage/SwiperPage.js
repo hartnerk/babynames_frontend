@@ -24,7 +24,8 @@ const SwiperPage = () => {
       }
       const response = await fetch(`http://localhost:8000/users/couples/${coupleID}/name-pools/`, init)
       const data = await response.json()
-      setNames(data[0].names)
+      let names_array = data[0].names.slice(0, 101-localStorage.getItem('name_index'))
+      setNames(names_array)
       setLoading(false)
 
     } catch (error) {
@@ -93,6 +94,7 @@ const SwiperPage = () => {
       console.log(`You liked ${name.baby_name}`)
       saveLikedName(name.id, localStorage.getItem('couple_id'), localStorage.getItem('user_id'))
     }
+    localStorage.setItem('name_index',parseInt(localStorage.getItem('name_index'))+1)
   };
 
   const renderNameDeck = names.map((name, index) => {
