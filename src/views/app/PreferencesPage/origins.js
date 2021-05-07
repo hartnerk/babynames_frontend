@@ -2,7 +2,7 @@ const origins_list = [
   "Arabic",
   "Chinese",
   "English",
-  "English Bible",
+  "Biblical",
   "French",
   "German",
   "Greek Mythology",
