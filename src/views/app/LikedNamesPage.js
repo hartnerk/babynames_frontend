@@ -42,7 +42,6 @@ const LikedNamesPage = () => {
     }
   }
 
-  // ** Hard coded couple ID assuming state/props is being passed from somewhere else in app
   useEffect(() => {
     fetchNameObjs(localStorage.getItem('couple_id'))
   }, [])
@@ -160,8 +159,7 @@ const LikedNamesPage = () => {
             )}
           </Droppable>
         </DragDropContext>
-        {/* ** hard coded couple ID here ** */}
-        <Button variant='primary' onClick={() => saveNamesOrder(4)}>Save Order</Button>
+        <Button variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('couple_id'))}>Save Order</Button>
       </div>
     )
   }
