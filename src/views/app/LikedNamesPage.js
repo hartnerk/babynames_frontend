@@ -25,9 +25,9 @@ const LikedNamesPage = () => {
     }
   }
 
-  const fetchNameObjs = async (coupleID) => {
+  const fetchNameObjs = async (userID) => {
     try {
-      const response = await fetch(`http://localhost:8000/users/couples/${coupleID}/liked-names/`)
+      const response = await fetch(`http://localhost:8000/users/user_info/${userID}/user-likes/`)
       const data = await response.json()
       await Promise.all( data.map(async(name) => {
         const baby_name = await(fetchNameFromID(name.name_id))
@@ -43,7 +43,7 @@ const LikedNamesPage = () => {
   }
 
   useEffect(() => {
-    fetchNameObjs(localStorage.getItem('couple_id'))
+    fetchNameObjs(localStorage.getItem('user_id'))
   }, [])
 
 
