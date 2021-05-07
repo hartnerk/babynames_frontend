@@ -80,6 +80,7 @@ function LoginPage({ history }) {
       {loading === false && (
         <AuthContainer>
           <LoginPageContainer>
+            <div></div>
             <LoginLeft>
               <img src={logo} className='login-logo' />
               <LeftText>
@@ -115,6 +116,7 @@ function LoginPage({ history }) {
                 </SwiperRedirect>
               </SwiperFormFieldContainer>
             </SwiperForm>
+            <div></div>
           </LoginPageContainer>
         </AuthContainer>
       )}
