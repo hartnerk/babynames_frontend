@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 // STYLESHEETS
 import { ListGroup } from 'react-bootstrap'
 
-const LikedNamePage = () => {
+const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
   const [likedNames, setLikedNames] = useState([])
   const [newName, setnewName] = useState('')
@@ -138,6 +138,6 @@ const LikedNamePage = () => {
       </div>
     )
   }
-// }
+}
 
-export default LikedNamePage
+export default LikedNamesPage

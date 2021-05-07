@@ -16,11 +16,7 @@ const PreferencesPage = () => {
   const [partnerUser, setPartnerUser] = useState('')
   const [loading, setLoading] = useState(true) 
   const [errors, setErrors] = useState(false)
-<<<<<<< HEAD
-  // const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
-=======
   //const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
->>>>>>> main
 
   useEffect(() => {
     if (localStorage.getItem('access_token') == null) {

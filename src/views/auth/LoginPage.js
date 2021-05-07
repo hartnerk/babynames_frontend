@@ -64,7 +64,7 @@ function LoginPage ({history}) {
     } catch (error) {
         alert(error)
     }
-    window.location.replace('http://localhost:3000/swiper')  }
+    window.location.replace('http://localhost:3000/user-profile/')  }
 
   return (
     <div>
