@@ -28,6 +28,10 @@ const SwiperFormFieldContainer = styled.div`
   align-items: center;
   font-size: 2.5vh;
   font-weight: 300;
+
+  &.login-fields {
+    margin-top: 3.5vh;
+  }
 `
 // ** Figure out background fill color with text inputed.  Would like to remove or change. **
 const SwiperFormField = styled.input`
@@ -67,6 +71,10 @@ const SwiperFormButton = styled.button`
     outline: none !important;
     outline-style: none !important;
     box-shadow: none !important;
+  }
+
+  &.login-btn {
+    margin-bottom: 6vh;
   }
 `
 

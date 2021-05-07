@@ -5,7 +5,11 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 
-
+// STYLES
+import { AuthContainer } from '../../styles/styledComponents/AuthContainer'
+import { SwiperForm, SwiperFormTitle, SwiperFormFieldContainer, SwiperFormField, SwiperFormButton, SwiperRedirect, SwiperLink } from '../../styles/styledComponents/SwiperForm'
+import { LoginPageContainer, LoginLeft, LeftText } from '../../styles/styledComponents/LoginPageContainers.js'
+import logo from '../../styles/resources/binkylogo.png'
 
 
 function LoginPage({ history }) {
@@ -28,8 +32,8 @@ function LoginPage({ history }) {
       username: username,
       password: password,
       grant_type: "password",
-      client_id:'EFxYCY1OrypZMyz6fXrwbqpJKsH1Lqu0wyk04p5Q',
-      client_secret:'fSlxzsT1wjZJrhv57EpdWnbbuIgwoWzeJMytkGwa41BuHhDJiwdZnBpKc1tlJfybIAko2OX65QRuN3G3V4U4kbThicRQgbx01QAOGdZ33UHKZXIzbFUXkeUUHh92sGSo'
+      client_id: 'EFxYCY1OrypZMyz6fXrwbqpJKsH1Lqu0wyk04p5Q',
+      client_secret: 'fSlxzsT1wjZJrhv57EpdWnbbuIgwoWzeJMytkGwa41BuHhDJiwdZnBpKc1tlJfybIAko2OX65QRuN3G3V4U4kbThicRQgbx01QAOGdZ33UHKZXIzbFUXkeUUHh92sGSo'
     }
 
     try {
@@ -72,34 +76,47 @@ function LoginPage({ history }) {
 
   return (
     <div>
-      {loading === false && <h1>Login</h1>}
       {errors === true && <h2>Cannot log in with provided credentials</h2>}
       {loading === false && (
-        <Container>
-          <Form onSubmit={onSubmit}>
-            <Form.Group>
-              <Form.Label htmlFor='email'>Username:</Form.Label>
-              <Form.Control
-                name='username'
-                type='text'
-                value={username}
-                required
-                onChange={e => setUsername(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label htmlFor='password'>Password:</Form.Label> <br />
-              <Form.Control
-                name='password'
-                type='password'
-                value={password}
-                required
-                onChange={e => setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Button variant='primary' type='submit' >Login</Button>
-          </Form>
-        </Container>
+        <AuthContainer>
+          <LoginPageContainer>
+            <LoginLeft>
+              <img src={logo} className='login-logo' />
+              <LeftText>
+                swipe.
+                <br />
+                like.
+                <br />
+                name.
+              </LeftText>
+            </LoginLeft>
+            <SwiperForm onSubmit={onSubmit}>
+              <SwiperFormTitle>baby swiper</SwiperFormTitle>
+              <SwiperFormFieldContainer className='login-fields'>
+                <SwiperFormField
+                  name='username'
+                  type='text'
+                  value={username}
+                  required
+                  onChange={e => setUsername(e.target.value)}
+                />
+                <SwiperFormField
+                  name='password'
+                  type='password'
+                  value={password}
+                  required
+                  onChange={e => setPassword(e.target.value)}
+                />
+                <SwiperFormButton type='submit' className='login-btn'>Log In</SwiperFormButton>
+                <SwiperRedirect>
+                  Don't have an account?
+                  <br />
+                  Sign up <SwiperLink className='swiper-link' to='/signup'>here.</SwiperLink>
+                </SwiperRedirect>
+              </SwiperFormFieldContainer>
+            </SwiperForm>
+          </LoginPageContainer>
+        </AuthContainer>
       )}
     </div>
   )
