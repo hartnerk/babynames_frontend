@@ -2,12 +2,13 @@ import React, {useEffect} from 'react'
 
 
 // COMPONENTS
-import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { useState } from 'react'
 
-
+// STYLES
+import { DetailsForm } from '../styles/styledComponents/NameDetails'
+import { AuthContainer } from '../styles/styledComponents/PreferencesPage'
 
 function NameDetailsPage({name}) {
     const [relatedNames, setRelatedNames] = useState()
@@ -41,7 +42,7 @@ function NameDetailsPage({name}) {
     }, [])
 
     return (
-        <Container>
+        <AuthContainer>
             <Card>
                 <Card.Body>
                     <ListGroup variant="flush">
@@ -68,7 +69,7 @@ function NameDetailsPage({name}) {
                     </ListGroup>
                 </Card.Body>
             </Card>
-        </Container>
+        </AuthContainer>
     )
 }
 

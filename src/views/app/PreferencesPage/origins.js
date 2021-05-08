@@ -13,9 +13,7 @@ const origins_list = [
   "Russian",
   "Spanish",
   "Swedish",
-  "Ukrainian"
-  
-  
+  "Ukrainian" 
 ]
 
 export default origins_list
