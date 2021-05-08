@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const AuthContainer = styled.div`
   background-image: linear-gradient(45deg, ${({ theme }) => theme.dark} 0%, ${({ theme }) => theme.lighter} 100%);
-  height: 92.5vh;
+  height: 100vh;
   background-size: cover;
   display: flex;
   justify-content: center;

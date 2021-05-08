@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-// COMPONENTS
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
-
 // STYLES
 import { AuthContainer } from '../../styles/styledComponents/AuthContainer'
 import { SwiperForm, SwiperFormTitle, SwiperFormFieldContainer, SwiperFormField, SwiperFormButton, SwiperRedirect, SwiperLink } from '../../styles/styledComponents/SwiperForm'
