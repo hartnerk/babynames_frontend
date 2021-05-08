@@ -80,6 +80,7 @@ const PreferencesPage = () => {
     }
     try {
       console.log(preferencesObject)
+      // Set couple preferences
       let init = {
         method: 'POST',
         headers: {
@@ -90,6 +91,18 @@ const PreferencesPage = () => {
       }
       await fetch("http://localhost:8000/users/set_preferences/", init)
       window.location.replace('http://localhost:3000/swiper')
+      
+      // Generate couple's name pool from couple preferences
+      let init2 = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('access_token')
+        }
+      }
+      await fetch("http://localhost:8000/users/pref_names/", init2) 
+    
+    
     } catch (error) {
       alert(error)
     }
