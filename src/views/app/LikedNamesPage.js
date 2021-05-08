@@ -10,6 +10,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ListGroup , ButtonGroup } from 'react-bootstrap'
 import {AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton} from '../../styles/styledComponents/AddNameForm'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
+import { LikedNamesContainer, NameListItem, Num, Delete } from '../../styles/styledComponents/NameLists'
 
 const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
@@ -179,26 +180,26 @@ const LikedNamesPage = () => {
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId='names'>
             {(provided) => (
-            <ListGroup {...provided.droppableProps} ref={provided.innerRef}>
+            <LikedNamesContainer {...provided.droppableProps} ref={provided.innerRef}>
                 {likedNames.map((name, index) => {
                   return (
                     <Draggable key={index} index={index} draggableId={index.toString()}>
                       {(provided) => (
-                        <ListGroup.Item 
+                        <NameListItem
                           {...provided.draggableProps} 
                           {...provided.dragHandleProps} 
                           ref={provided.innerRef}
                         >
-                          {index+1}: {name.baby_name}
-                          <Button variant='primary'  color='red' value={name.baby_name} onClick={(e) => deleteName(e)}>X</Button>
-                        </ListGroup.Item>
+                          <Num>{index+1}.</Num> {name.baby_name}
+                          <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
+                        </NameListItem>
                       )
                       }
                     </Draggable>
                   ) 
                 })}
               {provided.placeholder}
-            </ListGroup>
+            </LikedNamesContainer>
             )}
           </Droppable>
         </DragDropContext>

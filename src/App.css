@@ -3,4 +3,5 @@
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-flow: column;
+  overflow-x: hidden;
 }
