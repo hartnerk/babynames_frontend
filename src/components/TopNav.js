@@ -25,7 +25,7 @@ function TopNav() {
 
   return (
     <Navbar>
-      <Navbar.Brand>Baby Name Matcher</Navbar.Brand>
+      <Navbar.Brand>baby swiper</Navbar.Brand>
       <Navbar.Collapse>
         <Nav className="mr-auto">
           {isAuth === true ? (
