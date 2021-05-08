@@ -1,22 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react'
-import Button from 'react-bootstrap/Button'
+import React, { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import origins_list from './origins';
 
-// CONTEXTS
-//import { ProfileContext, useContext } from '../../../contexts/ProfileContext'
+// STYLES
+import { PrefFormNoteText, PrefForm, PrefDropdown, PrefDropdownButton,PrefFormTitle, PrefFormField, PrefFormButton, PrefLink }
+from '../../../styles/styledComponents/PreferencesForm'
+import { AuthContainer } from '../../../styles/styledComponents/PreferencesPage'
 
 const PreferencesPage = () => {
   const [gender, setGender] = useState('Select Gender')
   const [origin, setOrigin] = useState('Select Origin')
-  const [coupleId, setCoupleId] = useState('')
+  const [partnerId, setPartnerId] = useState(false)
   const [partnerUser, setPartnerUser] = useState('')
   const [loading, setLoading] = useState(true)
-  const [errors, setErrors] = useState(false)
-  //const {user, setUser, coupleId, setCoupleId} = useContext(ProfileContext)
 
   useEffect(() => {
     if (localStorage.getItem('access_token') == null) {
@@ -24,8 +20,10 @@ const PreferencesPage = () => {
       console.log(loading)
     } else {
       setLoading(false)
+      let partID = getPartner()
+      setPartnerId(partID)
     }
-  }, [])
+  }, [loading])
 
   async function onSubmitUser(e) {
     e.preventDefault()
@@ -44,22 +42,39 @@ const PreferencesPage = () => {
         body: JSON.stringify(partnerObject)
       }
       let response = await fetch("http://localhost:8000/users/set_couples/", init)
-      console.log('this is your response', response)
       let data = await response.json();
-      console.log('this is your data', data)
-      localStorage.setItem('couple_id', data.id)
-      // setCoupleId('based on partnerUser')
-      // setPartnerUser('wait for reponse')
+      if(data=='Please Enter a Valid Username'){
+        alert(data)
+      }else{
+        localStorage.setItem('couple_id', data.id)
+        await getPartner()
+      }
     } catch (error) {
-      alert("Please enter a valid username")
+      alert(error)
+    } 
+  }
+  async function getPartner() {
+    try {
+      let init = {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+        }
+      }
+      let response = await fetch("http://localhost:8000/users/get_partner/", init)
+      let data = await response.json();
+      console.log('get partner id', data.id)
+      localStorage.setItem('partnerId', data.id)
+      setPartnerId(data.id)
+    } catch (error) {
+      if(loading===false)
+        alert(error)
     }
   }
 
   async function onSubmit(e) {
     e.preventDefault()
     const preferencesObject = {
-      // // coupleId: coupleId,
-      // usercouple_id: coupleId,
       gender: gender,
       origin: origin,
     }
@@ -73,23 +88,8 @@ const PreferencesPage = () => {
         },
         body: JSON.stringify(preferencesObject)
       }
-      let response = await fetch("http://localhost:8000/users/set_preferences/", init)
-      console.log('this is your response', response)
-      let data = await response.json();
-      console.log('this is your pref data', data)
-
-      let init2 = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-        }
-      }
-      let name_pool_response = await fetch("http://localhost:8000/users/pref_names/", init2)
-      console.log('this is your response', name_pool_response)
-      let name_pool_data = await name_pool_response.json();
-      console.log('this is your name pool', name_pool_data)
-
+      await fetch("http://localhost:8000/users/set_preferences/", init)
+      window.location.replace('http://localhost:3000/swiper')
     } catch (error) {
       alert(error)
     }
@@ -97,51 +97,58 @@ const PreferencesPage = () => {
 
   function renderOriginsDropdown() {
     return (
-      <DropdownButton id="dropdown-basic-button" title={origin} onSelect={e => setOrigin(e)}>
+      <PrefDropdownButton id="dropdown-basic-button" title={origin} onSelect={e => setOrigin(e)}>
         {origins_list.map((item, index) => (
-          <Dropdown.Item key={index} eventKey={item}>{item}</Dropdown.Item>
+          <PrefDropdown key={index} eventKey={item}>{item}</PrefDropdown>
         ))}
-      </DropdownButton>
+      </PrefDropdownButton>
     )
   }
 
   return (
     <div>
-      {loading === false && <h1>Name Preferences</h1>}
-      {errors === true && <h2>Cannot log in with provided credentials</h2>}
+      {loading === true && <h1> Loading </h1>}
       {loading === false && (
         <div>
-          <Container>
-            <Form onSubmit={onSubmitUser}>
-              <Form.Group>
-                <Form.Label htmlFor='partnerUser'>Add your Partner:</Form.Label> <br />
-                <Form.Control
-                  name='partnerUser'
-                  type='text'
-                  value={partnerUser}
-                  required
-                  onChange={e => setPartnerUser(e.target.value)}
-                />
-              </Form.Group>
-              <Button variant='primary' type='submit' >Update Partner</Button>
-            </Form>
-          </Container>
-          <br></br>
-          <Container>
-            <Form onSubmit={onSubmit}>
-              {/* https://github.com/sickdyd/react-search-autocomplete maybey user later */}
+          {partnerId
+          ?
+          <AuthContainer>
+            <PrefForm onSubmit={onSubmit}>
+              <PrefFormTitle>Preferences</PrefFormTitle>
               <Form.Group>
                 {renderOriginsDropdown()}
               </Form.Group>
               <Form.Group>
-                <DropdownButton id="dropdown-basic-button" title={gender} onSelect={e => setGender(e)}>
-                  <Dropdown.Item key="1" eventKey="M">M</Dropdown.Item>
-                  <Dropdown.Item key="2" eventKey="F">F</Dropdown.Item>
-                </DropdownButton>
+                <PrefDropdownButton id="dropdown-basic-button" title={gender} onSelect={e => setGender(e)}>
+                  <PrefDropdown key="1" eventKey="M">M</PrefDropdown>
+                  <PrefDropdown key="2" eventKey="F">F</PrefDropdown>
+                </PrefDropdownButton>
               </Form.Group>
-              <Button variant='primary' type='submit' >Update Preferences</Button>
-            </Form>
-          </Container>
+              <PrefFormButton variant='primary' type='submit' >Update Preferences</PrefFormButton>
+              <PrefFormNoteText>
+              Switch your baby swiping partner?
+              <PrefLink value='false' onClick={e => setPartnerId(e.target.value)} className='Pref-link' to='/preferences'>here.</PrefLink>
+            </PrefFormNoteText>
+            </PrefForm>
+          </AuthContainer>
+          :
+          <AuthContainer>
+          <PrefForm onSubmit={onSubmitUser}>
+            <PrefFormTitle>Preferences</PrefFormTitle>
+                <Form.Group>
+                  <Form.Label htmlFor='partnerUser'>Add your Partner:</Form.Label> <br />
+                  <PrefFormField
+                    name='partnerUser'
+                    type='text'
+                    value={partnerUser}
+                    required
+                    onChange={e => setPartnerUser(e.target.value)}
+                  />
+                </Form.Group>
+                <PrefFormButton variant='primary' type='submit' >Update Partner</PrefFormButton>
+            </PrefForm>
+          </AuthContainer>
+          }            
         </div>
       )}
     </div>
