@@ -13,6 +13,26 @@ const SwiperPage = () => {
   const [loading, setLoading] = useState(true)
   const [Matched, setMatched] = useState(false)
 
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+
+
   const getNames = async (coupleID) => {
     try {
       const init = {
@@ -24,7 +44,7 @@ const SwiperPage = () => {
       }
       const response = await fetch(`http://localhost:8000/users/couples/${coupleID}/name-pools/`, init)
       const data = await response.json()
-      let names_array = data[0].names.slice(0, 101-localStorage.getItem('name_index'))
+      let names_array = shuffle(data[0].names.slice(0, 101-localStorage.getItem('name_index')))
       setNames(names_array)
       setLoading(false)
 
