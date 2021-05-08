@@ -49,7 +49,7 @@ function UserProfilePage() {
     <div>
       {loading === false && (
         <div>
-          <PageTitle>Hello, {localStorage.getItem('username')}</PageTitle>
+          <PageTitle className='profile'>Hello, {localStorage.getItem('username')}</PageTitle>
           <ProfileLinkContainer>
             <div></div>
             <ProfileLink to='/preferences'>
