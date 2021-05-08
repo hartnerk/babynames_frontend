@@ -29,7 +29,7 @@ function App() {
       <div className="App">
         <ProfileProvider>
           <Router>
-            <TopNav />
+            {localStorage.getItem('access_token') ? <TopNav /> : <div></div>}
             <Switch>
               <Route path='/login' component={LoginPage} exact />
               <Route path='/user-profile' component={UserProfilePage} exact />

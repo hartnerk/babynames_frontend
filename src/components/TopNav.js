@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import logo from '../styles/resources/binkylogo.png'
 
 
 // COMPONENTS
@@ -24,30 +25,37 @@ function TopNav() {
 
 
   return (
-    <Navbar>
-      <Navbar.Brand>baby swiper</Navbar.Brand>
-      <Navbar.Collapse>
-        <Nav className="mr-auto">
+    <Navbar style={{ boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.5)', height: '65px' }}>
+      <Navbar.Brand style={{ color: '#AD588C', fontSize: '28px' }}>
+        <img
+          src={logo}
+          height={'60px'}
+        />
+        &nbsp;
+        baby swiper
+      </Navbar.Brand>
+      <Navbar.Collapse className="justify-content-end">
+        <Nav className="mr-sm-2">
           {isAuth === true ? (
             <Fragment>
-              <NavDropdown title="Actions">
+              <NavDropdown title="Menu" alignRight >
                 <NavDropdown.Item>
-                  <Link to='/user-profile'>Profile</Link>
+                  <Link to='/user-profile' style={{ color: '#AD588C' }}>Profile</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to='/liked-names'>Liked Names</Link>
+                  <Link to='/liked-names' style={{ color: '#AD588C' }}>Liked Names</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to='/matchpage'>Matches</Link>
+                  <Link to='/matchpage' style={{ color: '#AD588C' }}>Matches</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link onClick={handelLogout}>Logout</Link>
+                  <Link onClick={handelLogout} style={{ color: '#AD588C' }}>Logout</Link>
                 </NavDropdown.Item>
               </NavDropdown>
             </Fragment>
           ) : (
             <Fragment>
-              <NavDropdown title="Actions">
+              <NavDropdown title="Menu">
                 <NavDropdown.Item>
                   <Link to='/login'>Login</Link>
                 </NavDropdown.Item>
@@ -58,8 +66,8 @@ function TopNav() {
             </Fragment>
           )}
         </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      </Navbar.Collapse >
+    </Navbar >
   )
 }
 
