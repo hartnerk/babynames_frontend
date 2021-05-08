@@ -8,7 +8,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // STYLESHEETS
 import { ListGroup , ButtonGroup } from 'react-bootstrap'
-  import {AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField} from '../../styles/styledComponents/AddNameForm'
 
 const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
@@ -150,12 +149,55 @@ const LikedNamesPage = () => {
   } else {
     return(
       <div>
-        <AddNameFormContainer>
-          <AddNameForm>
-            <AddNameTitle>add a new name</AddNameTitle>
-            <AddNameField placeholder='new name'></AddNameField>
-          </AddNameForm>
-        </AddNameFormContainer>
+        <h1>Your Liked Baby Names</h1>
+        <Container>
+          <Form onSubmit={onSubmitNewName}>
+              <Form.Group>
+                      <Form.Label htmlFor='newName'>Add your Name:</Form.Label> <br />
+                      <Form.Control
+                          name='newName'
+                          type='text'
+                          value={newName}
+                          required
+                          onChange={e => setnewName(e.target.value)}
+                      />
+                      <Form.Label htmlFor='gender'>Add your gender:</Form.Label> <br />
+                      <ButtonGroup aria-label="Basic example"  name='gender' onChange={e => setnewGender(e.target.value)}>
+                          <Button value='m' variant="secondary">Male</Button>
+                          <Button value='f' variant="secondary">Female</Button>
+                      </ButtonGroup>
+
+              </Form.Group>
+              <Button variant='primary' type='submit' >Add Name</Button>
+          </Form>
+        </Container>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId='names'>
+            {(provided) => (
+            <ListGroup {...provided.droppableProps} ref={provided.innerRef}>
+                {likedNames.map((name, index) => {
+                  return (
+                    <Draggable key={index} index={index} draggableId={index.toString()}>
+                      {(provided) => (
+                        <ListGroup.Item 
+                          {...provided.draggableProps} 
+                          {...provided.dragHandleProps} 
+                          ref={provided.innerRef}
+                        >
+                          {index+1}: {name.baby_name}
+                          <Button variant='primary'  color='red' value={name.baby_name} onClick={(e) => deleteName(e)}>X</Button>
+                        </ListGroup.Item>
+                      )
+                      }
+                    </Draggable>
+                  ) 
+                })}
+              {provided.placeholder}
+            </ListGroup>
+            )}
+          </Droppable>
+        </DragDropContext>
+        <Button variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('user_id'))}>Save Order</Button>
       </div>
     )
   }
