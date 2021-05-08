@@ -47,26 +47,30 @@ function UserProfilePage() {
 
   return (
     <div>
-      <PageTitle>Hello, {localStorage.getItem('username')}</PageTitle>
-      <ProfileLinkContainer>
-        <div></div>
-        <ProfileLink to='/preferences'>
-          <ProfileLinkCard className='set-prefs'>
-            Set<br />Preferences
-        </ProfileLinkCard>
-        </ProfileLink>
-        <ProfileLink to='/swiper'>
-          <ProfileLinkCard className='swipe-names'>
-            Swipe<br />Names
-        </ProfileLinkCard>
-        </ProfileLink>
-        <ProfileLink to='/liked-names'>
-          <ProfileLinkCard className='liked-names'>
-            Your Liked<br />Names
-        </ProfileLinkCard>
-        </ProfileLink>
-        <div></div>
-      </ProfileLinkContainer>
+      {loading === false && (
+        <div>
+          <PageTitle>Hello, {localStorage.getItem('username')}</PageTitle>
+          <ProfileLinkContainer>
+            <div></div>
+            <ProfileLink to='/preferences'>
+              <ProfileLinkCard className='set-prefs'>
+                Set<br />Preferences
+            </ProfileLinkCard>
+            </ProfileLink>
+            <ProfileLink to='/swiper'>
+              <ProfileLinkCard className='swipe-names'>
+                Swipe<br />Names
+            </ProfileLinkCard>
+            </ProfileLink>
+            <ProfileLink to='/liked-names'>
+              <ProfileLinkCard className='liked-names'>
+                Your Liked<br />Names
+            </ProfileLinkCard>
+            </ProfileLink>
+            <div></div>
+          </ProfileLinkContainer>
+        </div>
+      )}
     </div>
   );
 };
