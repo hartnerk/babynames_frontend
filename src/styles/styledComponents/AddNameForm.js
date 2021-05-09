@@ -47,12 +47,7 @@ const AddNameField = styled.input`
   }
 `
 
-const GenderButtonGroup = styled.button`
-  background-color: ${({ theme }) => theme.darkest};
-  border: none;
-`
-
-const GenderButton = styled.button`
+const GenderButton = styled.div`
   background-color: ${({ theme }) => theme.lightest};
   border: none;
   color: ${({ theme }) => theme.page};
@@ -69,6 +64,7 @@ const GenderButton = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.light};
+    cursor: pointer;
   }
   &:active {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
@@ -77,9 +73,6 @@ const GenderButton = styled.button`
     outline: none !important;
     outline-style: none !important;
     box-shadow: none !important;
-  }
-  &:target {
-    background-color: ${({ theme }) => theme.light};
   }
 `
 
@@ -111,6 +104,5 @@ export {
   AddNameForm,
   AddNameField,
   AddButton,
-  GenderButtonGroup,
   GenderButton
 }
