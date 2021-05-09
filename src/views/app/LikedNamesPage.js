@@ -10,7 +10,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ListGroup , ButtonGroup } from 'react-bootstrap'
 import {AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton} from '../../styles/styledComponents/AddNameForm'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
-import { LikedNamesContainer, NameListItem, Num, Delete } from '../../styles/styledComponents/NameLists'
+import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn } from '../../styles/styledComponents/NameLists'
 
 const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
@@ -203,7 +203,7 @@ const LikedNamesPage = () => {
             )}
           </Droppable>
         </DragDropContext>
-        <Button variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('user_id'))}>Save Order</Button>
+        <OrderSaveBtn variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('user_id'))}>Save Order</OrderSaveBtn>
       </div>
     )
   }
