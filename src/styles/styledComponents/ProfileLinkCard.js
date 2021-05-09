@@ -10,7 +10,7 @@ const ProfileLinkCard = styled.div`
   height: 250px;
   width: 250px;
   border-radius: 25px;
-  margin-top: 10vh;
+  margin: 10vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
