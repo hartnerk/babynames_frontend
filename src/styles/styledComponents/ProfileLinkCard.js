@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom'
 const ProfileLinkContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  
+
+  @media(max-width: 900px) {
+    flex-flow: column;
+    align-items: center;
+  }
 `
 
 const ProfileLinkCard = styled.div`
@@ -16,6 +22,10 @@ const ProfileLinkCard = styled.div`
   align-items: center;
   font-size: 28px;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+
+  @media(max-width: 900px) {
+    margin: 2vh;
+  }
 
   &:hover {
     height: 260px;
