@@ -9,7 +9,7 @@ const LikedNamesContainer = styled.div`
 `
 
 const NameListItem = styled.div`
-  min-width: 225px;
+  min-width: 320px;
   font-size: 24px;
   border-radius: 10px;
   display: flex;

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
 
 // COMPONENTS
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // STYLESHEETS
 import { ListGroup, ButtonGroup } from 'react-bootstrap'
-import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton } from '../../styles/styledComponents/AddNameForm'
+import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton, GenderButton } from '../../styles/styledComponents/AddNameForm'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
 import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn } from '../../styles/styledComponents/NameLists'
 
@@ -166,8 +163,8 @@ const LikedNamesPage = () => {
               name='gender'
               onChange={e => setnewGender(e.target.value)}
             >
-              <Button value='m' variant="secondary">Male</Button>
-              <Button value='f' variant="secondary">Female</Button>
+              <GenderButton value='m' variant="secondary" className='male'>Male</GenderButton>
+              <GenderButton value='f' variant="secondary" className='female'>Female</GenderButton>
             </ButtonGroup>
             <div />
             <AddButton type='submit'>add</AddButton>
@@ -198,8 +195,7 @@ const LikedNamesPage = () => {
                           <Num>{index + 1}.</Num> {name.baby_name}
                           <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
                         </NameListItem>
-                      )
-                      }
+                      )}
                     </Draggable>
                   )
                 })}
