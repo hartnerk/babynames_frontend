@@ -22,9 +22,9 @@ const MatchedNamePage = () => {
     }
   }
 
-  const fetchMatchedNameObjs = async (userID) => {
+  const fetchMatchedNameObjs = async (usercoupleID) => {
     try {
-      const response = await fetch(`http://localhost:8000/users/couples/${userID}/liked-names/?matched=True`)
+      const response = await fetch(`http://localhost:8000/users/couples/${usercoupleID}/liked-names/?matched=True`)
       const data = await response.json()
       await Promise.all(data.map(async(name) => {
         const baby_name = await(fetchMatchedNameFromID(name.name_id))
