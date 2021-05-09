@@ -1,3 +1,10 @@
+.deck {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+  color: white;
+}
+
 .swipe {
   position: absolute;
 }

@@ -7,9 +7,9 @@ import MatchAlert from '../../../components/MatchAlert'
 
 // STYLESHEET
 import './SwiperPage.css'
-import { CardsContainer, SwiperCard } from '../../../styles/styledComponents/SwiperCard'
+import { CardsContainer } from '../../../styles/styledComponents/SwiperCard'
 
-const SwiperPage = (props) => {
+const SwiperPage = () => {
   const [names, setNames] = useState([])
   const [loading, setLoading] = useState(true)
   const [Matched, setMatched] = useState(false)
@@ -95,6 +95,12 @@ const SwiperPage = (props) => {
       })
       const response2 = await request2.json()
       console.log('POST to user liked names: ', response2)
+
+
+
+
+
+
       return response1
     } catch (error) {
       alert(error)
@@ -113,33 +119,6 @@ const SwiperPage = (props) => {
     localStorage.setItem('name_index', parseInt(localStorage.getItem('name_index')) + 1)
   };
 
-  const randomColor = () => {
-    const colors = [
-      '#AD588C',
-      '#C96984',
-      '#E57778',
-      '#ED917A',
-      '#F1B581',
-      '#ECCF8B',
-    ]
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    return color;
-  }
-
-  const randomRotate = () => {
-    const rotation = Math.ceil(Math.random() * 6) * (Math.round(Math.random()) ? 1 : -1)
-    return `rotate(${rotation}deg)`;
-  }
-
-  const cardStyles = () => {
-    const style = {
-      backgroundColor: randomColor(),
-      transform: randomRotate()
-    }
-    return style
-  }
-
-  console.log(cardStyles)
   const renderNameDeck = names.map((name, index) => {
     if (loading === false) {
       return (
@@ -149,11 +128,19 @@ const SwiperPage = (props) => {
           preventSwipe={['up', 'down']}
           className='swipe'
         >
-          <SwiperCard
-            style={cardStyles()}
+          <Card
+            bg='info'
+            className='name-card'
+            style={{
+              position: 'relative'
+            }}
           >
-            {name.baby_name}
-          </SwiperCard>
+            <Card.Body className='card-body'>
+              <Card.Title className='name'>
+                {name.baby_name}
+              </Card.Title>
+            </Card.Body>
+          </Card>
         </TinderCard >
       );
     };
