@@ -13,7 +13,7 @@ const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
   const [likedNames, setLikedNames] = useState([])
   const [newName, setnewName] = useState('')
-  const [gender, setnewGender] = useState('')
+  const [newGender, setnewGender] = useState('')
 
   const fetchNameFromID = async (nameID) => {
     try {
@@ -63,11 +63,12 @@ const LikedNamesPage = () => {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+ localStorage.getItem('access_token'),
       }, 
-      body:  JSON.stringify({customName: newName, gender: gender})
+      body:  JSON.stringify({customName: newName, gender: newGender})
     }
     try {
       const response = await fetch(`http://localhost:8000/users/add_name/`, init)
       const data = await response.json()
+      window.location.reload()
       return data
     } catch (error) {
       alert(error)
@@ -131,6 +132,7 @@ const LikedNamesPage = () => {
           body: JSON.stringify({customName: e.target.value})
         }
         const saveRequest = await fetch (`http://localhost:8000/users/deletelikedname/`, init)
+        window.location.reload()
       } catch (error) {
         console.log(error)
       }
@@ -162,7 +164,7 @@ const LikedNamesPage = () => {
                           onChange={e => setnewName(e.target.value)}
                       />
                       <Form.Label htmlFor='gender'>Add your gender:</Form.Label> <br />
-                      <ButtonGroup aria-label="Basic example"  name='gender' onChange={e => setnewGender(e.target.value)}>
+                      <ButtonGroup aria-label="Basic example"  name='gender' onClick={e => setnewGender(e.target.value)}>
                           <Button value='m' variant="secondary">Male</Button>
                           <Button value='f' variant="secondary">Female</Button>
                       </ButtonGroup>
@@ -185,7 +187,7 @@ const LikedNamesPage = () => {
                           ref={provided.innerRef}
                         >
                           {index+1}: {name.baby_name}
-                          <Button variant='primary'  color='red' value={name.baby_name} onClick={(e) => deleteName(e)}>X</Button>
+                          <Button variant='danger' value={name.baby_name} onClick={(e) => deleteName(e)}>X</Button>
                         </ListGroup.Item>
                       )
                       }
