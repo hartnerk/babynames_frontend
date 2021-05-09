@@ -19,7 +19,7 @@ const PrefFormTitle = styled.div`
   font-size: 6vh;
   font-weight: 600;
   color: ${({ theme }) => theme.page};
-  padding-top: 4vh;
+  padding: 4vh 0 5vh 0;
 `
 
 // ** Figure out background fill color with text inputed.  Would like to remove or change. **
@@ -92,7 +92,7 @@ const PrefDropdown = styled(Dropdown.Item)`
     color: ${({ theme }) => theme.light} !important;
   }
 `
-const PrefFormNoteText= styled.div`
+const PrefFormNoteText = styled.div`
   font-size: 1em;
   font-weight: 5em;
   color: ${({ theme }) => theme.page};

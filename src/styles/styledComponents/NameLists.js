@@ -5,7 +5,7 @@ const LikedNamesContainer = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  
+  padding-top: 1vh;
 `
 
 const NameListItem = styled.div`
@@ -20,6 +20,22 @@ const NameListItem = styled.div`
   color: ${({ theme }) => theme.page};  
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25); 
   background-color: ${({ theme }) => theme.darkest};
+
+  &.first{
+    background-color:  ${({ theme }) => theme.lightest};
+  }
+  &.second{
+    background-color:  ${({ theme }) => theme.lighter};
+  }
+  &.third{
+    background-color:  ${({ theme }) => theme.light};
+  }
+  &.fourth{
+    background-color:  ${({ theme }) => theme.dark};
+  }
+  &.fifth{
+    background-color:  ${({ theme }) => theme.darker};
+  }
 `
 
 const Num = styled.div`
@@ -48,7 +64,7 @@ const Delete = styled.button`
 `
 
 const OrderSaveBtn = styled.button`
-  background-color: ${({ theme }) => theme.light};
+  background-color: ${({ theme }) => theme.lightest};
   border: none;
   border-radius: 10px;
   color: ${({ theme }) => theme.page};
@@ -58,7 +74,7 @@ const OrderSaveBtn = styled.button`
   font-size: 18px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.darker};
+    background-color: ${({ theme }) => theme.light};
   }
   &:active {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);

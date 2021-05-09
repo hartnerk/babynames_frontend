@@ -187,6 +187,13 @@ const LikedNamesPage = () => {
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           ref={provided.innerRef}
+                          className={`
+                            ${(index === 0) ? 'first' : ''}
+                            ${(index === 1) ? 'second' : ''}
+                            ${(index === 2) ? 'third' : ''}
+                            ${(index === 3) ? 'fourth' : ''}
+                            ${(index === 4) ? 'fifth' : ''}
+                          `}
                         >
                           <Num>{index + 1}.</Num> {name.baby_name}
                           <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
@@ -202,7 +209,7 @@ const LikedNamesPage = () => {
           </Droppable>
         </DragDropContext>
         <OrderSaveBtn variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('user_id'))}>Save Order</OrderSaveBtn>
-      </div>
+      </div >
     )
   }
 }
