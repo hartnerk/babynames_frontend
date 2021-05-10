@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 import { CoverNav, CoverButton, SplashCoverPhoto, SpashTag, SplashPageSection, WhyBlock, WhyImg, WhyText, TeamContainer, TeamCard, TeamImg, SplashFooter } from '../../styles/styledComponents/SplashComponents'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
 import logo from '../../styles/resources/binkylogo.png'
+import swipe from '../../styles/resources/swipelogo.png'
+import info from '../../styles/resources/infologo.png'
+import connect from '../../styles/resources/connectlogo.png'
 import jacob from '../../styles/resources/jacob.jpeg'
 import jon from '../../styles/resources/jon.jpeg'
 import kyle from '../../styles/resources/kyle.jpeg'
@@ -36,22 +39,22 @@ const SplashPage = () => {
         </WhyBlock>
         <WhyBlock>
           <WhyText>Swipe through an extensive catalog of names and save your likes to a personalized list by swiping right.  Then order your likes to keep track of your front runners.</WhyText>
-          <WhyImg src={logo} alt='swiper' />
+          <WhyImg src={swipe} alt='swiper' />
         </WhyBlock>
         <WhyBlock>
-          <WhyImg src={logo} alt='info' />
+          <WhyImg src={info} alt='info' />
           <WhyText>Gain insight into each liked name on your list.  Learn about the name's origin as well as popularity throughout the years, and more!</WhyText>
         </WhyBlock>
         <WhyBlock>
           <WhyText>Link with a partner account and start seeing names that you and your partner have matched on.  Choosing a baby name has never been easier or more fun.</WhyText>
-          <WhyImg src={logo} alt='share' />
+          <WhyImg src={connect} alt='share' />
         </WhyBlock>
         <WhyBlock>
-          <WhyText><Link style={{ color: '#AD588C' }}>Sign up</Link> for an account and start swiping names today!</WhyText>
+          <WhyText><Link style={{ color: '#AD588C' }} to='/signup'>Sign up</Link> for an account and start swiping names today!</WhyText>
         </WhyBlock>
       </SplashPageSection>
       <div>
-        <PageTitle className='splash-why'>Meet Team Baby Swiper</PageTitle>
+        <PageTitle className='splash-why'>Meet the Baby Swiper Team</PageTitle>
         <TeamContainer>
           <TeamCard className='darkest' href='http://jamesbrooks.tech/'>
             <TeamImg src={logo} alt='James' className='darkest' />

@@ -33,7 +33,7 @@ function App() {
           <Router>
             {localStorage.getItem('access_token') ? <TopNav /> : <div></div>}
             <Switch>
-              <Route path='/' component={SplashPage} exact />
+              {localStorage.getItem('access_token') ? <Route path='/' component={UserProfilePage} exact /> : <Route path='/' component={SplashPage} exact />}
               <Route path='/login' component={LoginPage} exact />
               <Route path='/user-profile' component={UserProfilePage} exact />
               <Route path='/name-detail' component={NameDetails} exact />
