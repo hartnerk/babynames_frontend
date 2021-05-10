@@ -3,8 +3,8 @@ import Form from 'react-bootstrap/Form'
 import origins_list from './origins';
 
 // STYLES
-import { PrefFormNoteText, PrefForm, PrefDropdown, PrefDropdownButton,PrefFormTitle, PrefFormField, PrefFormButton, PrefLink }
-from '../../../styles/styledComponents/PreferencesForm'
+import { PrefFormNoteText, PrefForm, PrefDropdown, PrefDropdownButton, PrefFormTitle, PrefFormField, PrefFormButton, PrefLink }
+  from '../../../styles/styledComponents/PreferencesForm'
 import { AuthContainer } from '../../../styles/styledComponents/PreferencesPage'
 
 const PreferencesPage = () => {
@@ -43,15 +43,15 @@ const PreferencesPage = () => {
       }
       let response = await fetch("http://localhost:8000/users/set_couples/", init)
       let data = await response.json();
-      if(data=='Please Enter a Valid Username'){
+      if (data == 'Please Enter a Valid Username') {
         alert(data)
-      }else{
+      } else {
         localStorage.setItem('couple_id', data.id)
         await getPartner()
       }
     } catch (error) {
       alert(error)
-    } 
+    }
   }
   async function getPartner() {
     try {
@@ -67,7 +67,7 @@ const PreferencesPage = () => {
       localStorage.setItem('partnerId', data.id)
       setPartnerId(data.id)
     } catch (error) {
-      if(loading===false)
+      if (loading === false)
         alert(error)
     }
   }
@@ -91,7 +91,7 @@ const PreferencesPage = () => {
       }
       await fetch("http://localhost:8000/users/set_preferences/", init)
       window.location.replace('http://localhost:3000/swiper')
-      
+
       // Generate couple's name pool from couple preferences
       let init2 = {
         method: 'GET',
@@ -100,9 +100,9 @@ const PreferencesPage = () => {
           'Authorization': 'Bearer ' + localStorage.getItem('access_token')
         }
       }
-      await fetch("http://localhost:8000/users/pref_names/", init2) 
-    
-    
+      await fetch("http://localhost:8000/users/pref_names/", init2)
+
+
     } catch (error) {
       alert(error)
     }
@@ -124,30 +124,30 @@ const PreferencesPage = () => {
       {loading === false && (
         <div>
           {partnerId
-          ?
-          <AuthContainer>
-            <PrefForm onSubmit={onSubmit}>
-              <PrefFormTitle>Preferences</PrefFormTitle>
-              <Form.Group>
-                {renderOriginsDropdown()}
-              </Form.Group>
-              <Form.Group>
-                <PrefDropdownButton id="dropdown-basic-button" title={gender} onSelect={e => setGender(e)}>
-                  <PrefDropdown key="1" eventKey="M">M</PrefDropdown>
-                  <PrefDropdown key="2" eventKey="F">F</PrefDropdown>
-                </PrefDropdownButton>
-              </Form.Group>
-              <PrefFormButton variant='primary' type='submit' >Update Preferences</PrefFormButton>
-              <PrefFormNoteText>
-              Switch your baby swiping partner?
+            ?
+            <AuthContainer>
+              <PrefForm onSubmit={onSubmit}>
+                <PrefFormTitle>Preferences</PrefFormTitle>
+                <Form.Group>
+                  {renderOriginsDropdown()}
+                </Form.Group>
+                <Form.Group>
+                  <PrefDropdownButton id="dropdown-basic-button" title={gender} onSelect={e => setGender(e)}>
+                    <PrefDropdown key="1" eventKey="M">M</PrefDropdown>
+                    <PrefDropdown key="2" eventKey="F">F</PrefDropdown>
+                  </PrefDropdownButton>
+                </Form.Group>
+                <PrefFormButton variant='primary' type='submit' >Update Preferences</PrefFormButton>
+                <PrefFormNoteText>
+                  Switch your baby swiping partner? &nbsp;
               <PrefLink value='false' onClick={e => setPartnerId(e.target.value)} className='Pref-link' to='/preferences'>here.</PrefLink>
-            </PrefFormNoteText>
-            </PrefForm>
-          </AuthContainer>
-          :
-          <AuthContainer>
-          <PrefForm onSubmit={onSubmitUser}>
-            <PrefFormTitle>Preferences</PrefFormTitle>
+                </PrefFormNoteText>
+              </PrefForm>
+            </AuthContainer>
+            :
+            <AuthContainer>
+              <PrefForm onSubmit={onSubmitUser}>
+                <PrefFormTitle>Preferences</PrefFormTitle>
                 <Form.Group>
                   <Form.Label htmlFor='partnerUser'>Add your Partner:</Form.Label> <br />
                   <PrefFormField
@@ -159,9 +159,9 @@ const PreferencesPage = () => {
                   />
                 </Form.Group>
                 <PrefFormButton variant='primary' type='submit' >Update Partner</PrefFormButton>
-            </PrefForm>
-          </AuthContainer>
-          }            
+              </PrefForm>
+            </AuthContainer>
+          }
         </div>
       )}
     </div>
