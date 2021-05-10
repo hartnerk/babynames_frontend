@@ -9,6 +9,7 @@ import swipe from '../../styles/resources/swipelogo.png'
 import info from '../../styles/resources/infologo.png'
 import connect from '../../styles/resources/connectlogo.png'
 import jacob from '../../styles/resources/jacob.jpeg'
+import james from '../../styles/resources/james.jpeg'
 import jon from '../../styles/resources/jon.jpeg'
 import kyle from '../../styles/resources/kyle.jpeg'
 import krysta from '../../styles/resources/krysta.jpeg'
@@ -56,8 +57,8 @@ const SplashPage = () => {
       <div>
         <PageTitle className='splash-why'>Meet the Baby Swiper Team</PageTitle>
         <TeamContainer>
-          <TeamCard className='darkest' href='http://jamesbrooks.tech/'>
-            <TeamImg src={logo} alt='James' className='darkest' />
+          <TeamCard className='darkest' href='https://www.linkedin.com/in/ja-br/'>
+            <TeamImg src={james} alt='James' className='darkest' />
             James Brooks
           </TeamCard>
           <TeamCard className='light' href='https://www.linkedin.com/in/jon-carlton42/'>
