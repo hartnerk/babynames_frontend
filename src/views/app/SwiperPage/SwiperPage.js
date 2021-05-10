@@ -64,6 +64,22 @@ const SwiperPage = (props) => {
         name_id: nameID,
         order: nameID
       }
+      // Check if name is already on list
+      const checkRequest = await fetch(`http://localhost:8000/users/couples/${coupleID}/liked-names/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("access_token")}`
+        }
+      })
+      let checkResponse = await checkRequest.json()
+      for (let i=0; i < checkResponse.length; i++) {
+        if (checkResponse[i]['name_id'] === newLikedName1['name_id']) {
+          setMatched(true)
+          newLikedName1['matched'] = true;
+        }
+      }
+
       const request1 = await fetch(`http://localhost:8000/users/couples/${coupleID}/liked-names/`, {
         method: 'POST',
         headers: {
