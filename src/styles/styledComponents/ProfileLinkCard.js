@@ -20,6 +20,7 @@ const ProfileLinkCard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
   margin: 2vh;
   font-size: 28px;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
@@ -59,8 +60,14 @@ const ProfileLink = styled(Link)`
   }
 `
 
+const ProfileCardLogo = styled.img`
+  height: 75px;
+  margin-top: 15px;
+`
+
 export {
   ProfileLinkContainer,
   ProfileLinkCard,
-  ProfileLink
+  ProfileLink,
+  ProfileCardLogo
 }

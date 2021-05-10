@@ -9,6 +9,7 @@ import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButto
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
 import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn, Info } from '../../styles/styledComponents/NameLists'
 
+
 const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
   const [likedNames, setLikedNames] = useState([])
