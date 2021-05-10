@@ -11,6 +11,7 @@ import { Chart } from '../styles/styledComponents/Chart'
 function PopChart({name_data}) {
 
 
+
 const ref = useD3(
     (svg) => {
         const margin = {top: 20, bottom: 10}
