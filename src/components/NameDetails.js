@@ -12,8 +12,9 @@ import { AuthContainer } from '../styles/styledComponents/PreferencesPage'
 import PopChart from './PopChart'
 
 
-const prop = {"name": "Mary", "data": [{"decade": "1880", "occurrences": 92030, "rank": 1000}, {"decade": "1890", "occurrences": 131630, "rank": 1000}, {"decade": "1900", "occurrences": 162188, "rank": 1000}, {"decade": "1910", "occurrences": 480011, "rank": 1000}, {"decade": "1920", "occurrences": 704191, "rank": 1000}, {"decade": "1930", "occurrences": 576004, "rank": 970}, {"decade": "1940", "occurrences": 642343, "rank": 804}, {"decade": "1950", "occurrences": 627126, "rank": 741}, {"decade": "1960", "occurrences": 356573, "rank": 426}, {"decade": "1970", "occurrences": 126942, "rank": 178}, {"decade": "1980", "occurrences": 96467, "rank": 144}, {"decade": "1990", "occurrences": 75861, "rank": 163}, {"decade": "2000", "occurrences": 46263, "rank": 168}, {"decade": "2010", "occurrences": 25588, "rank": 131}]}
-const name = "Mary"
+const loadData = require('../names_data_file.json')
+const name = "Liam"
+const nameStats = loadData.filter(x => x.name == name)
 
 
 function NameDetailsPage() {
@@ -71,7 +72,7 @@ function NameDetailsPage() {
                         <ListGroup.Item>
                             <strong>Popularity over the decades:</strong>
                             <div>
-                                <PopChart name_data={prop.data}/>
+                                <PopChart name_data={nameStats[0].data}/>
                             </div>
                         </ListGroup.Item>
                     </ListGroup>
