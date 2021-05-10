@@ -22,7 +22,8 @@ import SwiperPage from './views/app/SwiperPage/SwiperPage'
 import PreferencesPage from './views/app/PreferencesPage/PreferencesPage'
 import MatchPage from './views/app/MatchPage'
 import LikedNamesPage from './views/app/LikedNamesPage'
-import RecomendedPage from './views/app/RecomendedPage'
+import RecommendedPage from './views/app/RecommendedPage'
+import SplashPage from './views/app/SplashPage'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Router>
             {localStorage.getItem('access_token') ? <TopNav /> : <div></div>}
             <Switch>
+              {localStorage.getItem('access_token') ? <Route path='/' component={UserProfilePage} exact /> : <Route path='/' component={SplashPage} exact />}
               <Route path='/login' component={LoginPage} exact />
               <Route path='/user-profile' component={UserProfilePage} exact />
               <Route path='/name-detail' component={NameDetails} exact />
@@ -40,7 +42,7 @@ function App() {
               <Route path='/preferences' component={PreferencesPage} exact />
               <Route path='/liked-names' component={LikedNamesPage} exact />
               <Route path='/matchpage' component={MatchPage} exact />
-              <Route path='/recomendations' component={RecomendedPage} exact />
+              <Route path='/recommendations' component={RecommendedPage} exact />
             </Switch>
           </Router>
         </ProfileProvider>

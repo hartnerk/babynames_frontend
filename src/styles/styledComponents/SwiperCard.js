@@ -17,6 +17,10 @@ const SwiperCard = styled.div`
   font-size: 40px;
   border-radius: 25px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 export {
