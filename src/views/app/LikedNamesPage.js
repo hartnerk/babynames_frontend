@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
 
 // COMPONENTS
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // STYLESHEETS
-import { ListGroup , ButtonGroup } from 'react-bootstrap'
+import { ListGroup, ButtonGroup } from 'react-bootstrap'
+import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton, GenderButton } from '../../styles/styledComponents/AddNameForm'
+import { PageTitle } from '../../styles/styledComponents/PageTitle'
+import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn } from '../../styles/styledComponents/NameLists'
 
 const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
@@ -29,10 +29,10 @@ const LikedNamesPage = () => {
     try {
       const response = await fetch(`http://localhost:8000/users/user_info/${userID}/user-likes/`)
       const data = await response.json()
-      await Promise.all( data.map(async(name) => {
-        const baby_name = await(fetchNameFromID(name.name_id))
+      await Promise.all(data.map(async (name) => {
+        const baby_name = await (fetchNameFromID(name.name_id))
         name['baby_name'] = baby_name.baby_name
-        
+
       }))
       data.sort((a, b) => (a.order > b.order) ? 1 : -1)
       setLikedNames(data)
@@ -48,7 +48,7 @@ const LikedNamesPage = () => {
 
 
   const handleOnDragEnd = (result) => {
-    if(!result.destination) return
+    if (!result.destination) return
     const items = Array.from(likedNames)
     const [reorderedItem] = items.splice(result.source.index, 1)
     items.splice(result.destination.index, 0, reorderedItem)
@@ -61,9 +61,9 @@ const LikedNamesPage = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+ localStorage.getItem('access_token'),
-      }, 
-      body:  JSON.stringify({customName: newName, gender: newGender})
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+      body: JSON.stringify({ customName: newName, gender: newGender })
     }
     try {
       const response = await fetch(`http://localhost:8000/users/add_name/`, init)
@@ -105,16 +105,16 @@ const LikedNamesPage = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+ localStorage.getItem('access_token'),
-      }, 
-      body:  JSON.stringify({})
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+      body: JSON.stringify({})
     }
     try {
       const response = await fetch(`http://localhost:8000/users/match_order/`, init)
       const data = await response.json()
       console.log(data)
     }
-    catch(error) {
+    catch (error) {
       console.log(error)
     }
   }
@@ -123,84 +123,89 @@ const LikedNamesPage = () => {
     e.preventDefault()
     console.log('her hre', e)
     try {
-        const init = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-          },
-          body: JSON.stringify({customName: e.target.value})
-        }
-        const saveRequest = await fetch (`http://localhost:8000/users/deletelikedname/`, init)
-        window.location.reload()
-      } catch (error) {
-        console.log(error)
+      const init = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        },
+        body: JSON.stringify({ customName: e.target.value })
       }
+      const saveRequest = await fetch(`http://localhost:8000/users/deletelikedname/`, init)
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 
 
-  if(loading) {
+  if (loading) {
     return (
       <h1>loading</h1>
     )
-  } else if(likedNames.length < 1) {
-    return (
-      <h1>You don't have any liked names yet.</h1>
-    )
   } else {
-    return(
+    return (
       <div>
-        <h1>Your Liked Baby Names</h1>
-        <Container>
-          <Form onSubmit={onSubmitNewName}>
-              <Form.Group>
-                      <Form.Label htmlFor='newName'>Add your Name:</Form.Label> <br />
-                      <Form.Control
-                          name='newName'
-                          type='text'
-                          value={newName}
-                          required
-                          onChange={e => setnewName(e.target.value)}
-                      />
-                      <Form.Label htmlFor='gender'>Add your gender:</Form.Label> <br />
-                      <ButtonGroup aria-label="Basic example"  name='gender' onClick={e => setnewGender(e.target.value)}>
-                          <Button value='m' variant="secondary">Male</Button>
-                          <Button value='f' variant="secondary">Female</Button>
-                      </ButtonGroup>
-
-              </Form.Group>
-              <Button variant='primary' type='submit' >Add Name</Button>
-          </Form>
-        </Container>
+        <AddNameFormContainer>
+          <AddNameForm onSubmit={onSubmitNewName}>
+            <AddNameTitle>add a new name :</AddNameTitle>
+            <AddNameField
+              placeholder='new name'
+              name='newName'
+              type='text'
+              value={newName}
+              required
+              onChange={e => setnewName(e.target.value)}
+            ></AddNameField>
+            <ButtonGroup
+              aria-label="Basic example"
+              name='gender'
+              onChange={e => setnewGender(e.target.value)}
+            >
+              <GenderButton value='m' variant="secondary" className='male'>Male</GenderButton>
+              <GenderButton value='f' variant="secondary" className='female'>Female</GenderButton>
+            </ButtonGroup>
+            <div />
+            <AddButton type='submit'>add</AddButton>
+            <div />
+          </AddNameForm>
+        </AddNameFormContainer>
+        <PageTitle className='likes'>Your Liked Names</PageTitle>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId='names'>
             {(provided) => (
-            <ListGroup {...provided.droppableProps} ref={provided.innerRef}>
+              <LikedNamesContainer {...provided.droppableProps} ref={provided.innerRef}>
                 {likedNames.map((name, index) => {
                   return (
                     <Draggable key={index} index={index} draggableId={index.toString()}>
                       {(provided) => (
-                        <ListGroup.Item 
-                          {...provided.draggableProps} 
-                          {...provided.dragHandleProps} 
+                        <NameListItem
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
                           ref={provided.innerRef}
+                          className={`
+                            ${(index === 0) ? 'first' : ''}
+                            ${(index === 1) ? 'second' : ''}
+                            ${(index === 2) ? 'third' : ''}
+                            ${(index === 3) ? 'fourth' : ''}
+                            ${(index === 4) ? 'fifth' : ''}
+                          `}
                         >
-                          {index+1}: {name.baby_name}
-                          <Button variant='danger' value={name.baby_name} onClick={(e) => deleteName(e)}>X</Button>
-                        </ListGroup.Item>
-                      )
-                      }
+                          <Num>{index + 1}.</Num> {name.baby_name}
+                          <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
+                        </NameListItem>
+                      )}
                     </Draggable>
-                  ) 
+                  )
                 })}
-              {provided.placeholder}
-            </ListGroup>
+                {provided.placeholder}
+              </LikedNamesContainer>
             )}
           </Droppable>
         </DragDropContext>
-        <Button variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('user_id'))}>Save Order</Button>
-      </div>
+        <OrderSaveBtn variant='primary' onClick={() => saveNamesOrder(localStorage.getItem('user_id'))}>Save Order</OrderSaveBtn>
+      </div >
     )
   }
 }

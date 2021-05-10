@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-// COMPONENTS
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-
 // STYLESHEETS
-import { ListGroup } from 'react-bootstrap'
+import { PageTitle } from '../../styles/styledComponents/PageTitle'
+import { LikedNamesContainer, NameListItem } from '../../styles/styledComponents/NameLists'
 
 const MatchedNamePage = () => {
   const [loading, setLoading] = useState(true)
@@ -59,37 +57,19 @@ const MatchedNamePage = () => {
     )
   } else if(matchedNames.length < 1) {
     return (
-      <h1>You don't have any MATCHED names yet.</h1>
+      <PageTitle className='likes'>You don't have any MATCHED names yet.</PageTitle>
     )
   } else {
     return(
       <div>
-        <h1>Your Matched  Baby Names</h1>
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId='names'>
-            {(provided) => (
-            <ListGroup {...provided.droppableProps} ref={provided.innerRef}>
-                {matchedNames.map((name, index) => {
-                  return (
-                    <Draggable key={index} index={index} draggableId={index.toString()}>
-                      {(provided) => (
-                        <ListGroup.Item 
-                          {...provided.draggableProps} 
-                          {...provided.dragHandleProps} 
-                          ref={provided.innerRef}
-                        >
-                          {index+1}: {name.baby_name}
-                        </ListGroup.Item>
-                      )
-                      }
-                    </Draggable>
-                  ) 
-                })}
-              {provided.placeholder}
-            </ListGroup>
-            )}
-          </Droppable>
-        </DragDropContext>
+        <PageTitle className='likes'>Your Matched Names</PageTitle>
+        <LikedNamesContainer>
+          {matchedNames.map((name, index) => {
+            return (
+              <NameListItem><div/>{name.baby_name}<div/></NameListItem>
+            )
+          })}
+        </LikedNamesContainer>
       </div>
     )
   }

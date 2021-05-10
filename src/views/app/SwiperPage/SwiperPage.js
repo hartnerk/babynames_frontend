@@ -7,28 +7,29 @@ import MatchAlert from '../../../components/MatchAlert'
 
 // STYLESHEET
 import './SwiperPage.css'
+import { CardsContainer, SwiperCard } from '../../../styles/styledComponents/SwiperCard'
 
-const SwiperPage = () => {
+const SwiperPage = (props) => {
   const [names, setNames] = useState([])
   const [loading, setLoading] = useState(true)
   const [Matched, setMatched] = useState(false)
 
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-  
+
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-  
+
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-  
+
       // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-  
+
     return array;
   }
 
@@ -44,7 +45,7 @@ const SwiperPage = () => {
       }
       const response = await fetch(`http://localhost:8000/users/couples/${coupleID}/name-pools/`, init)
       const data = await response.json()
-      let names_array = shuffle(data[0].names.slice(0, 101-localStorage.getItem('name_index')))
+      let names_array = shuffle(data[0].names.slice(0, 101 - localStorage.getItem('name_index')))
       setNames(names_array)
       setLoading(false)
 
@@ -94,12 +95,6 @@ const SwiperPage = () => {
       })
       const response2 = await request2.json()
       console.log('POST to user liked names: ', response2)
-
-
-      
-      
-
-
       return response1
     } catch (error) {
       alert(error)
@@ -115,9 +110,36 @@ const SwiperPage = () => {
       console.log(`You liked ${name.baby_name}`)
       saveLikedName(name.id, localStorage.getItem('couple_id'), localStorage.getItem('user_id'))
     }
-    localStorage.setItem('name_index',parseInt(localStorage.getItem('name_index'))+1)
+    localStorage.setItem('name_index', parseInt(localStorage.getItem('name_index')) + 1)
   };
 
+  const randomColor = () => {
+    const colors = [
+      '#AD588C',
+      '#C96984',
+      '#E57778',
+      '#ED917A',
+      '#F1B581',
+      '#ECCF8B',
+    ]
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    return color;
+  }
+
+  const randomRotate = () => {
+    const rotation = Math.ceil(Math.random() * 6) * (Math.round(Math.random()) ? 1 : -1)
+    return `rotate(${rotation}deg)`;
+  }
+
+  const cardStyles = () => {
+    const style = {
+      backgroundColor: randomColor(),
+      transform: randomRotate()
+    }
+    return style
+  }
+
+  console.log(cardStyles)
   const renderNameDeck = names.map((name, index) => {
     if (loading === false) {
       return (
@@ -127,19 +149,11 @@ const SwiperPage = () => {
           preventSwipe={['up', 'down']}
           className='swipe'
         >
-          <Card
-            bg='info'
-            className='name-card'
-            style={{
-              position: 'relative'
-            }}
+          <SwiperCard
+            style={cardStyles()}
           >
-            <Card.Body className='card-body'>
-              <Card.Title className='name'>
-                {name.baby_name}
-              </Card.Title>
-            </Card.Body>
-          </Card>
+            {name.baby_name}
+          </SwiperCard>
         </TinderCard >
       );
     };
@@ -147,10 +161,10 @@ const SwiperPage = () => {
 
 
   return (
-    <div className='deck'>
+    <CardsContainer>
       {renderNameDeck}
       <MatchAlert matched={Matched}></MatchAlert>
-    </div>
+    </CardsContainer>
   );
 };
 
