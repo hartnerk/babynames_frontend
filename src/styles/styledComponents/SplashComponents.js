@@ -13,6 +13,7 @@ const CoverNav = styled.div`
   justify-content: space-between;
   font-size: 28px;
   color: ${({ theme }) => theme.darkest};
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
 
   img{
     height: 60px;
@@ -67,19 +68,19 @@ const SpashTag = styled.div`
   margin-top: 300px;
 `
 
-const WhyBabySwipe = styled.div`
+const SplashPageSection = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
+  margin-bottom: 100px;
 `
 
 const WhyBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
 `
 
 const WhyImg = styled.img`
@@ -92,13 +93,65 @@ const WhyText = styled.div`
   width: 25vw;
 `
 
+const TeamContainer = styled.div`
+  margin: 50px 0 100px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  
+`
+const TeamCard = styled(Link)`
+  width: 220px;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  border-radius: 10px;
+  padding-bottom: 10px;
+
+  &:hover{
+    color: white;
+    transform: scale(1.1)
+  }
+  
+  &.darkest {
+    background-color: ${({ theme }) => theme.darkest};
+  }
+  &.darker {
+    background-color: ${({ theme }) => theme.darker};
+  }
+  &.dark {
+    background-color: ${({ theme }) => theme.dark};
+  }
+  &.light {
+    background-color: ${({ theme }) => theme.light};
+  }
+  &.lighter {
+    background-color: ${({ theme }) => theme.lighter};
+  }
+  &.lightest {
+    background-color: ${({ theme }) => theme.lightest};
+  }
+`
+
+const TeamImg = styled.img`
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  border-radius: 10px;
+`
+
 export {
   CoverNav,
   CoverButton,
   SplashCoverPhoto,
   SpashTag,
-  WhyBabySwipe,
+  SplashPageSection,
   WhyBlock,
   WhyImg,
-  WhyText
+  WhyText,
+  TeamContainer,
+  TeamCard,
+  TeamImg,
 }

@@ -28,6 +28,7 @@ function TopNav() {
       <Navbar.Brand style={{ color: '#AD588C', fontSize: '28px' }}>
         <img
           src={logo}
+          alt='logo'
           height={'60px'}
         />
         &nbsp;

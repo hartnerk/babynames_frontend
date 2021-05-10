@@ -1,47 +1,85 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 //STYLES
-import { CoverNav, CoverButton, SplashCoverPhoto, SpashTag, WhyBabySwipe, WhyBlock, WhyImg, WhyText } from '../../styles/styledComponents/SplashComponents'
+import { CoverNav, CoverButton, SplashCoverPhoto, SpashTag, SplashPageSection, WhyBlock, WhyImg, WhyText, TeamContainer, TeamCard, TeamImg } from '../../styles/styledComponents/SplashComponents'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
 import logo from '../../styles/resources/binkylogo.png'
+import jacob from '../../styles/resources/jacob.jpeg'
+import jon from '../../styles/resources/jon.jpeg'
+import kyle from '../../styles/resources/kyle.jpeg'
+import krysta from '../../styles/resources/krysta.jpeg'
+import caitlin from '../../styles/resources/caitlin.png'
 
 const SplashPage = () => {
   return (
-    <div>
+    <div style={{ display: 'flex', flexFlow: 'column' }}>
       <CoverNav>
         <div>
-          <img src={logo} />
+          <img src={logo} alt='logo' />
           &nbsp;
           baby swiper
         </div>
         <div>
-          <CoverButton>Sign Up</CoverButton>
-          <CoverButton>Log In</CoverButton>
+          <CoverButton to='/signup'>Sign Up</CoverButton>
+          <CoverButton to='/login'>Log In</CoverButton>
         </div>
       </CoverNav>
       <SplashCoverPhoto>
         <SpashTag>Placeholder for a super cool tagline.</SpashTag>
       </SplashCoverPhoto>
-      <WhyBabySwipe>
+      <SplashPageSection>
         <PageTitle className='splash-why'>Why Baby Swiper?</PageTitle>
         <WhyBlock>
-          <WhyImg src={logo} />
-          <WhyText>Baby Swiper is a fun, interactive way for you and a partner to narrow down an infinite list of baby names.  Create an account to start swiping on baby names you like and dislike.</WhyText>
+          <WhyImg src={logo} alt='logo' />
+          <WhyText><span style={{ color: '#AD588C' }}>Baby Swiper</span> is a fun, interactive way for you and a partner to narrow down an infinite list of baby names.  Create an account to start swiping on baby names you like and dislike.</WhyText>
         </WhyBlock>
         <WhyBlock>
-          <WhyText>Save a list of all the baby names you have liked on and refer back to it at any time.</WhyText>
-          <WhyImg src={logo} />
+          <WhyText>Swipe through an extensive catalog of names and save your likes to a personalized list by swiping right.  Then order your likes to keep track of your front runners.</WhyText>
+          <WhyImg src={logo} alt='swiper' />
         </WhyBlock>
         <WhyBlock>
-          <WhyImg src={logo} />
-          <WhyText>Gain insight into each like name on your list.  Learn about the name's origin as well as popularity throughout the years, celebrities who share that name and more!</WhyText>
+          <WhyImg src={logo} alt='info' />
+          <WhyText>Gain insight into each liked name on your list.  Learn about the name's origin as well as popularity throughout the years, celebrities who share that name and more!</WhyText>
         </WhyBlock>
         <WhyBlock>
-          <WhyText>Link your account with a partner account and start seeing names that you and your partner have matched on.  Choosing a baby name has never been easier or more fun.  Join today!</WhyText>
-          <WhyImg src={logo} />
+          <WhyText>Link your account with a partner account and start seeing names that you and your partner have matched on.  Choosing a baby name has never been easier or more fun.</WhyText>
+          <WhyImg src={logo} alt='share' />
         </WhyBlock>
-      </WhyBabySwipe>
-    </div>
+        <WhyBlock>
+          <WhyText><Link style={{ color: '#AD588C' }}>Sign up</Link> for an account and start swiping names today!</WhyText>
+        </WhyBlock>
+      </SplashPageSection>
+      <div>
+        <PageTitle className='splash-why'>Meet Team Baby Swiper</PageTitle>
+        <TeamContainer>
+          <TeamCard className='darkest' >
+            <TeamImg src={logo} alt='James' className='darkest' />
+            James Brooks
+          </TeamCard>
+          <TeamCard className='light'>
+            <TeamImg src={jon} alt='Jon' />
+            Jon Carlton
+          </TeamCard>
+          <TeamCard className='darker'>
+            <TeamImg src={jacob} alt='Jacob' />
+            Jacob Crawford
+          </TeamCard>
+          <TeamCard className='lightest'>
+            <TeamImg src={kyle} alt='Kyle' />
+            Kyle Hartner
+          </TeamCard >
+          <TeamCard className='lighter' >
+            <TeamImg src={krysta} alt='Krysta' />
+            Krysta Pfeifer
+          </TeamCard>
+          <TeamCard className='dark'>
+            <TeamImg src={caitlin} alt='Caitlin' />
+            Caitlin Wilson
+          </TeamCard>
+        </TeamContainer>
+      </div>
+    </div >
   )
 }
 
