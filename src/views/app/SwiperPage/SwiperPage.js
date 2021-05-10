@@ -53,9 +53,61 @@ const SwiperPage = (props) => {
     }
   }
 
+  const getAllNames = async () => {
+    try {
+      const init = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      }
+      const response = await fetch(`http://localhost:8000/users/baby-names/`, init)
+      const data = await response.json()
+      console.log(data)
+      let names_array = shuffle(data)
+      names_array = names_array.slice(0,100)
+      setNames(names_array)
+      setLoading(false)
+    } catch (error) {
+      alert(error)
+    }
+  }
+
   useEffect(() => {
-    getNames(localStorage.getItem('couple_id'))
+    console.log(localStorage.couple_id)
+    if (localStorage.couple_id == "undefined") {
+      getAllNames()
+      console.log('Got all names!')
+    } else {
+      getNames(localStorage.getItem('couple_id'))
+      console.log('Got some names!')
+    }
   }, []);
+
+  const saveSoloLikedName = async (nameID, userID) => {
+    try {
+      const newSoloName = {
+        user_id: userID,
+        name_id: nameID,
+        order: nameID
+      }
+      const soloRequest = await fetch(`http://localhost:8000/users/user_info/${userID}/user-likes/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("access_token")}`
+        },
+        body: JSON.stringify(newSoloName)
+      })
+      const soloResponse = await soloRequest.json()
+      console.log('POST to user liked names: ', soloResponse)
+      return soloResponse
+    } catch (error) {
+    alert(error)
+    }
+  }
+
 
   const saveLikedName = async (nameID, coupleID, userID) => {
     try {
@@ -142,7 +194,11 @@ const SwiperPage = (props) => {
       saveDislikedName(name.id, localStorage.getItem('couple_id'), localStorage.getItem('user_id'))
     } else if (direction === 'right') {
       console.log(`You liked ${name.baby_name}`)
-      saveLikedName(name.id, localStorage.getItem('couple_id'), localStorage.getItem('user_id'))
+      if (localStorage.couple_id != "undefined") {
+        saveLikedName(name.id, localStorage.getItem('couple_id'), localStorage.getItem('user_id'))
+      } else {
+        saveSoloLikedName(name.id, localStorage.getItem('user_id'))
+      }
     }
     localStorage.setItem('name_index', parseInt(localStorage.getItem('name_index')) + 1)
   };
