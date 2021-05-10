@@ -22,6 +22,7 @@ import SwiperPage from './views/app/SwiperPage/SwiperPage'
 import PreferencesPage from './views/app/PreferencesPage/PreferencesPage'
 import MatchPage from './views/app/MatchPage'
 import LikedNamesPage from './views/app/LikedNamesPage'
+import RecomendedPage from './views/app/RecomendedPage'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path='/preferences' component={PreferencesPage} exact />
               <Route path='/liked-names' component={LikedNamesPage} exact />
               <Route path='/matchpage' component={MatchPage} exact />
+              <Route path='/recomendations' component={RecomendedPage} exact />
             </Switch>
           </Router>
         </ProfileProvider>

@@ -2,13 +2,13 @@ import React, { useState, useEffect, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../styles/resources/binkylogo.png'
 
-
 // COMPONENTS
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { NavDropdown } from 'react-bootstrap'
 
 function TopNav() {
+  const [names, setNames] = useState([])
   const [isAuth, setIsAuth] = useState(false)
 
   useEffect(() => {
@@ -22,7 +22,6 @@ function TopNav() {
     localStorage.removeItem('refresh_token');
     window.location.replace('http://localhost:3000/login');
   }
-
 
   return (
     <Navbar style={{ boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.5)', height: '65px' }}>
@@ -47,6 +46,9 @@ function TopNav() {
                 </NavDropdown.Item>
                 <NavDropdown.Item>
                   <Link to='/matchpage' style={{ color: '#AD588C' }}>Matches</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to='/recomendations' style={{ color: '#AD588C' }}>reocmendations</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
                   <Link onClick={handelLogout} style={{ color: '#AD588C' }}>Logout</Link>
