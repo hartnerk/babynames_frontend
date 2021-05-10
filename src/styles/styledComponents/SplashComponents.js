@@ -47,6 +47,7 @@ const CoverButton = styled(Link)`
 
 const SplashCoverPhoto = styled.div`
   background-image: url(${CoverPhoto});
+  background-position: right 0 bottom -75px;
   height: 92vh;
   margin-top: 65px;
   background-size: cover;
@@ -57,6 +58,7 @@ const SplashCoverPhoto = styled.div`
 
   &img {
     width: 100vw;
+    
   }
 `
 
