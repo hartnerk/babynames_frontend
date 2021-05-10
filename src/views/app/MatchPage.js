@@ -12,7 +12,7 @@ const MatchedNamePage = () => {
   const [loading, setLoading] = useState(true)
   const [matchedNames, setMatchedNames] = useState([])
   const [show, setShow] = useState(false)
-  
+
   const handleShow = () => setShow(true)
 
 
@@ -73,7 +73,7 @@ const MatchedNamePage = () => {
         <PageTitle className='likes'>Your Matched Names</PageTitle>
         <LikedNamesContainer>
 
-          <NameDetails show={show} setShow={setShow}></NameDetails>
+          <NameDetails show={show} setShow={setShow} ></NameDetails>
 
           {matchedNames.map((name, index) => {
             return (
