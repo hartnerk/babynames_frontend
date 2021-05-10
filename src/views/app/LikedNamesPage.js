@@ -5,9 +5,9 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // STYLESHEETS
 import { ListGroup, ButtonGroup, Button } from 'react-bootstrap'
-import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton, GenderButton } from '../../styles/styledComponents/AddNameForm'
+import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton } from '../../styles/styledComponents/AddNameForm'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
-import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn } from '../../styles/styledComponents/NameLists'
+import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn, Info } from '../../styles/styledComponents/NameLists'
 
 const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
@@ -193,7 +193,10 @@ const LikedNamesPage = () => {
                           `}
                         >
                           <Num>{index + 1}.</Num> {name.baby_name}
-                          <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
+                          <div>
+                            <Info>i</Info>
+                            <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
+                          </div>
                         </NameListItem>
                       )}
                     </Draggable>
