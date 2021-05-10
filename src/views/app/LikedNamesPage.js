@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // STYLESHEETS
-import { ListGroup, ButtonGroup, Button } from 'react-bootstrap'
+import { ButtonGroup, Button } from 'react-bootstrap'
 import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton } from '../../styles/styledComponents/AddNameForm'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
 import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn, Info } from '../../styles/styledComponents/NameLists'
@@ -138,6 +138,15 @@ const LikedNamesPage = () => {
     }
   }
 
+  const MaleButton = {
+    backgroundColor: '#ECCF8B',
+    borderRadius: '10px 0 0 10px'
+  }
+
+  const FemaleButton = {
+    backgroundColor: '#ECCF8B',
+    borderRadius: '0 10px 10px 0'
+  }
 
 
   if (loading) {
@@ -153,7 +162,6 @@ const LikedNamesPage = () => {
             <AddNameField
               placeholder='new name'
               name='newName'
-              type='text'
               value={newName}
               required
               onChange={e => setNewName(e.target.value)}
@@ -163,8 +171,8 @@ const LikedNamesPage = () => {
               name='gender'
               onClick={e => setNewGender(e.target.value)}
             >
-              <Button value='m' variant="secondary" className='male'>Male</Button>
-              <Button value='f' variant="secondary" className='female'>Female</Button>
+              <Button style={MaleButton} value='m' variant="secondary" className='male'>Male</Button>
+              <Button style={FemaleButton} value='f' variant="secondary" className='female'>Female</Button>
             </ButtonGroup>
             <div />
             <AddButton type='submit'>add</AddButton>
