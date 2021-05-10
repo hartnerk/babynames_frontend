@@ -82,7 +82,9 @@ const SplashPage = () => {
           </TeamCard>
         </TeamContainer>
       </div>
-      <SplashFooter />
+      <SplashFooter>
+        Cover Photo by Amina Filkins - Unsplash.com
+      </SplashFooter>
     </div >
   )
 }
