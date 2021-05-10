@@ -12,24 +12,13 @@ import { AuthContainer } from '../styles/styledComponents/PreferencesPage'
 import PopChart from './PopChart'
 
 
-const name_data = [
-    {"decade": "1880", "occurrences": 25512, "rank": 277}, 
-    {"decade": "1890", "occurrences": 28763, "rank": 218}, 
-    {"decade": "1900", "occurrences": 24268, "rank": 149}, 
-    {"decade": "1910", "occurrences": 41963, "rank": 87}, 
-    {"decade": "1920", "occurrences": 46729, "rank": 66}, 
-    {"decade": "1930", "occurrences": 30228, "rank": 50}, 
-    {"decade": "1940", "occurrences": 22901, "rank": 28}, 
-    {"decade": "1950", "occurrences": 14656, "rank": 17}, 
-    {"decade": "1960", "occurrences": 7004, "rank": 8}, 
-    {"decade": "1970", "occurrences": 4682, "rank": 6}, 
-    {"decade": "1980", "occurrences": 10439, "rank": 15}
-]
+const prop = {"name": "Mary", "data": [{"decade": "1880", "occurrences": 92030, "rank": 1000}, {"decade": "1890", "occurrences": 131630, "rank": 1000}, {"decade": "1900", "occurrences": 162188, "rank": 1000}, {"decade": "1910", "occurrences": 480011, "rank": 1000}, {"decade": "1920", "occurrences": 704191, "rank": 1000}, {"decade": "1930", "occurrences": 576004, "rank": 970}, {"decade": "1940", "occurrences": 642343, "rank": 804}, {"decade": "1950", "occurrences": 627126, "rank": 741}, {"decade": "1960", "occurrences": 356573, "rank": 426}, {"decade": "1970", "occurrences": 126942, "rank": 178}, {"decade": "1980", "occurrences": 96467, "rank": 144}, {"decade": "1990", "occurrences": 75861, "rank": 163}, {"decade": "2000", "occurrences": 46263, "rank": 168}, {"decade": "2010", "occurrences": 25588, "rank": 131}]}
+const name = "Mary"
 
-function NameDetailsPage({name}) {
+
+function NameDetailsPage() {
     const [relatedNames, setRelatedNames] = useState()
     const [celebrityNames, setCelebrityNames] = useState()
-    // const name = "Michael"
 
     async function getRelatedNames(){
         const response = await fetch(`https://www.behindthename.com/api/related.json?name=${name}&usage=eng&key=ja675945445`)
@@ -82,7 +71,7 @@ function NameDetailsPage({name}) {
                         <ListGroup.Item>
                             <strong>Popularity over the decades:</strong>
                             <div>
-                                <PopChart name_data={name_data}/>
+                                <PopChart name_data={prop.data}/>
                             </div>
                         </ListGroup.Item>
                     </ListGroup>
