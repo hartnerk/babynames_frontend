@@ -13,7 +13,7 @@ function RecomendedPage({name}) {
     const [names, setNames] = useState([])
     // const name = "Michael"
     useEffect(() => {
-        handelRecomendations()
+      handelRecomendations()
        
     }, [])
 
@@ -28,8 +28,7 @@ function RecomendedPage({name}) {
           }
           const response = await fetch(`http://localhost:8000/users/recomendations`, init)
           const data = await response.json()
-          let names_array = data[0].names.slice(0, 101-localStorage.getItem('name_index'))
-          setNames(names_array)
+          setNames(data)
         } catch (error) {
           alert(error)
         }
@@ -37,7 +36,9 @@ function RecomendedPage({name}) {
 
     const renderRecomendations = names.map((name, index) => {
         return (
-            <h1>{name}</h1>
+            <div>
+              <h1> {name.baby_name} , </h1>
+            </div>
         )
     })
     
