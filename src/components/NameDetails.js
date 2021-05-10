@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 
 
 // COMPONENTS
-import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import {Modal, Button} from 'react-bootstrap'
 
@@ -14,14 +13,14 @@ import PopChart from './PopChart'
 
 
 const loadData = require('../names_data_file.json')
-const name = "Liam"
-const nameStats = loadData.filter(x => x.name == name)
 
 
-function NameDetails({show, setShow}) {
+function NameDetails({show, setShow, name}) {
     const [relatedNames, setRelatedNames] = useState()
     const [celebrityNames, setCelebrityNames] = useState()
-  
+
+    const nameStats = loadData.filter(x => x.name == name)
+
 
     const handleClose = () => setShow(false)
 
@@ -49,7 +48,7 @@ function NameDetails({show, setShow}) {
         getRelatedNames()
         getCelebrityNames()
        
-    }, [])
+    }, [name])
 
     return (
 
@@ -74,7 +73,7 @@ function NameDetails({show, setShow}) {
                 <ListGroup.Item>
                     <strong>Popularity over the decades:</strong>
                     <div>
-                        <PopChart name_data={prop.data}/>
+                        {show === true && <PopChart name_data={nameStats[0].data}/> }
                     </div>
                 </ListGroup.Item>
             </ListGroup>
