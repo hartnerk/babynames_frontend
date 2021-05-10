@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
+// COMPONENTS
+import NameDetails from '../../components/NameDetails'
+
+
 // STYLESHEETS
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
 import { LikedNamesContainer, NameListItem } from '../../styles/styledComponents/NameLists'
@@ -7,6 +11,10 @@ import { LikedNamesContainer, NameListItem } from '../../styles/styledComponents
 const MatchedNamePage = () => {
   const [loading, setLoading] = useState(true)
   const [matchedNames, setMatchedNames] = useState([])
+  const [show, setShow] = useState(false)
+  
+  const handleShow = () => setShow(true)
+
 
   const fetchMatchedNameFromID = async (nameID) => {
     try {
@@ -64,9 +72,12 @@ const MatchedNamePage = () => {
       <div>
         <PageTitle className='likes'>Your Matched Names</PageTitle>
         <LikedNamesContainer>
+
+          <NameDetails show={show} setShow={setShow}></NameDetails>
+
           {matchedNames.map((name, index) => {
             return (
-              <NameListItem><div/>{name.baby_name}<div/></NameListItem>
+              <NameListItem onClick={handleShow}><div/>{name.baby_name}<div/></NameListItem>
             )
           })}
         </LikedNamesContainer>
