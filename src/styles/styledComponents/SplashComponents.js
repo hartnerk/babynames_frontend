@@ -101,7 +101,7 @@ const TeamContainer = styled.div`
   flex-wrap: wrap;
   
 `
-const TeamCard = styled(Link)`
+const TeamCard = styled.a`
   width: 220px;
   color: white;
   display: flex;
@@ -112,6 +112,7 @@ const TeamCard = styled(Link)`
 
   &:hover{
     color: white;
+    cursor: pointer;
     transform: scale(1.1)
   }
   
@@ -142,6 +143,15 @@ const TeamImg = styled.img`
   border-radius: 10px;
 `
 
+const SplashFooter = styled.div`
+  width: 100vw;
+  background-color: ${({ theme }) => theme.light};
+  height: 25px;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+`
+
 export {
   CoverNav,
   CoverButton,
@@ -154,4 +164,5 @@ export {
   TeamContainer,
   TeamCard,
   TeamImg,
+  SplashFooter,
 }

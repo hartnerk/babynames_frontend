@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //STYLES
-import { CoverNav, CoverButton, SplashCoverPhoto, SpashTag, SplashPageSection, WhyBlock, WhyImg, WhyText, TeamContainer, TeamCard, TeamImg } from '../../styles/styledComponents/SplashComponents'
+import { CoverNav, CoverButton, SplashCoverPhoto, SpashTag, SplashPageSection, WhyBlock, WhyImg, WhyText, TeamContainer, TeamCard, TeamImg, SplashFooter } from '../../styles/styledComponents/SplashComponents'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
 import logo from '../../styles/resources/binkylogo.png'
 import jacob from '../../styles/resources/jacob.jpeg'
@@ -40,10 +40,10 @@ const SplashPage = () => {
         </WhyBlock>
         <WhyBlock>
           <WhyImg src={logo} alt='info' />
-          <WhyText>Gain insight into each liked name on your list.  Learn about the name's origin as well as popularity throughout the years, celebrities who share that name and more!</WhyText>
+          <WhyText>Gain insight into each liked name on your list.  Learn about the name's origin as well as popularity throughout the years, and more!</WhyText>
         </WhyBlock>
         <WhyBlock>
-          <WhyText>Link your account with a partner account and start seeing names that you and your partner have matched on.  Choosing a baby name has never been easier or more fun.</WhyText>
+          <WhyText>Link with a partner account and start seeing names that you and your partner have matched on.  Choosing a baby name has never been easier or more fun.</WhyText>
           <WhyImg src={logo} alt='share' />
         </WhyBlock>
         <WhyBlock>
@@ -53,32 +53,33 @@ const SplashPage = () => {
       <div>
         <PageTitle className='splash-why'>Meet Team Baby Swiper</PageTitle>
         <TeamContainer>
-          <TeamCard className='darkest' >
+          <TeamCard className='darkest' href='http://jamesbrooks.tech/'>
             <TeamImg src={logo} alt='James' className='darkest' />
             James Brooks
           </TeamCard>
-          <TeamCard className='light'>
+          <TeamCard className='light' href='https://www.linkedin.com/in/jon-carlton42/'>
             <TeamImg src={jon} alt='Jon' />
             Jon Carlton
           </TeamCard>
-          <TeamCard className='darker'>
+          <TeamCard className='darker' href='https://www.linkedin.com/in/jacob-crawford-7033a918/'>
             <TeamImg src={jacob} alt='Jacob' />
             Jacob Crawford
           </TeamCard>
-          <TeamCard className='lightest'>
+          <TeamCard className='lightest' href='https://www.linkedin.com/in/kyle-hartner/'>
             <TeamImg src={kyle} alt='Kyle' />
             Kyle Hartner
           </TeamCard >
-          <TeamCard className='lighter' >
+          <TeamCard className='lighter' href='https://www.linkedin.com/in/krysta-pfeifer/'>
             <TeamImg src={krysta} alt='Krysta' />
             Krysta Pfeifer
           </TeamCard>
-          <TeamCard className='dark'>
+          <TeamCard className='dark' href='https://www.linkedin.com/in/caitlin-wilson-01/'>
             <TeamImg src={caitlin} alt='Caitlin' />
             Caitlin Wilson
           </TeamCard>
         </TeamContainer>
       </div>
+      <SplashFooter />
     </div >
   )
 }
