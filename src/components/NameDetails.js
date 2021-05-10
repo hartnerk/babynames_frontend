@@ -9,6 +9,22 @@ import { useState } from 'react'
 // STYLES
 import { DetailsForm } from '../styles/styledComponents/NameDetails'
 import { AuthContainer } from '../styles/styledComponents/PreferencesPage'
+import PopChart from './PopChart'
+
+
+const name_data = [
+    {"decade": "1880", "occurrences": 25512, "rank": 277}, 
+    {"decade": "1890", "occurrences": 28763, "rank": 218}, 
+    {"decade": "1900", "occurrences": 24268, "rank": 149}, 
+    {"decade": "1910", "occurrences": 41963, "rank": 87}, 
+    {"decade": "1920", "occurrences": 46729, "rank": 66}, 
+    {"decade": "1930", "occurrences": 30228, "rank": 50}, 
+    {"decade": "1940", "occurrences": 22901, "rank": 28}, 
+    {"decade": "1950", "occurrences": 14656, "rank": 17}, 
+    {"decade": "1960", "occurrences": 7004, "rank": 8}, 
+    {"decade": "1970", "occurrences": 4682, "rank": 6}, 
+    {"decade": "1980", "occurrences": 10439, "rank": 15}
+]
 
 function NameDetailsPage({name}) {
     const [relatedNames, setRelatedNames] = useState()
@@ -65,6 +81,9 @@ function NameDetailsPage({name}) {
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <strong>Popularity over the decades:</strong>
+                            <div>
+                                <PopChart name_data={name_data}/>
+                            </div>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card.Body>
