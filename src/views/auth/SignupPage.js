@@ -66,7 +66,7 @@ function SignupPage() {
   return (
     <AuthContainer>
       { errors === true && <Alert variant="warning">Cannot signup with provided credentials</Alert>}
-      <img className='logoimg' src={logo} />
+      <img className='logoimg' alt='logo' src={logo} />
       <SwiperForm onSubmit={onSubmit}>
         <SwiperFormTitle>baby swiper</SwiperFormTitle>
         <SwiperFormFieldContainer>
