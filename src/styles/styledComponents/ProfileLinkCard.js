@@ -34,19 +34,19 @@ const ProfileLinkCard = styled.div`
   }
 
   &.set-prefs {
-    background: ${({ theme }) => theme.darkest};
-  }
-  &.swipe-names {
     background: ${({ theme }) => theme.darker};
   }
-  &.liked-names {
+  &.swipe-names {
     background: ${({ theme }) => theme.dark};
   }
+  &.liked-names {
+    background: ${({ theme }) => theme.darkest};
+  }
   &.matched-names {
-    background: ${({ theme }) => theme.light};
+    background: ${({ theme }) => theme.lightest};
   }
   &.rec-names {
-    background: ${({ theme }) => theme.lighter};
+    background: ${({ theme }) => theme.light};
   }
 `
 

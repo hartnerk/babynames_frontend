@@ -12,6 +12,12 @@ const PageTitle = styled.div`
   &.likes {
     margin-top: 5vh;
   }
+
+  &.splash-why {
+    margin-top: 2vh;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
 `
 
 export {
