@@ -28,9 +28,7 @@ const ProfileLinkCard = styled.div`
   }
 
   &:hover {
-    height: 260px;
-    width: 260px;
-    font-size: 30px;
+    transform: scale(1.1)
   }
 
   &:active {
