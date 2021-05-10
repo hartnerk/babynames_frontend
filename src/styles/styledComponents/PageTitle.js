@@ -6,7 +6,7 @@ const PageTitle = styled.div`
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 
   &.profile {
-    margin-top: 15vh;
+    margin: 15vh 0 10vh 0;
   }
 
   &.likes {

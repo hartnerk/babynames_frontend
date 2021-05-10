@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 
 const ProfileLinkContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   
 
   @media(max-width: 900px) {
@@ -16,16 +17,13 @@ const ProfileLinkCard = styled.div`
   height: 250px;
   width: 250px;
   border-radius: 25px;
-  margin: 10vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2vh;
   font-size: 28px;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
 
-  @media(max-width: 900px) {
-    margin: 2vh;
-  }
 
   &:hover {
     transform: scale(1.1)
@@ -36,13 +34,19 @@ const ProfileLinkCard = styled.div`
   }
 
   &.set-prefs {
-    background: ${({ theme }) => theme.darker};
+    background: ${({ theme }) => theme.darkest};
   }
   &.swipe-names {
-    background: ${({ theme }) => theme.dark};
+    background: ${({ theme }) => theme.darker};
   }
   &.liked-names {
-    background: ${({ theme }) => theme.lightest};
+    background: ${({ theme }) => theme.dark};
+  }
+  &.matched-names {
+    background: ${({ theme }) => theme.light};
+  }
+  &.rec-names {
+    background: ${({ theme }) => theme.lighter};
   }
 `
 

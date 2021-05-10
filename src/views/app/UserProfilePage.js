@@ -51,7 +51,6 @@ function UserProfilePage() {
         <div>
           <PageTitle className='profile'>Hello, {localStorage.getItem('username')}.</PageTitle>
           <ProfileLinkContainer>
-            <div></div>
             <ProfileLink to='/preferences'>
               <ProfileLinkCard className='set-prefs'>
                 Set<br />Preferences
@@ -67,7 +66,16 @@ function UserProfilePage() {
                 Your Liked<br />Names
             </ProfileLinkCard>
             </ProfileLink>
-            <div></div>
+            <ProfileLink to='/matchpage'>
+              <ProfileLinkCard className='matched-names'>
+                Your Matched<br />Names
+            </ProfileLinkCard>
+            </ProfileLink>
+            <ProfileLink to='/recommendations'>
+              <ProfileLinkCard className='rec-names'>
+                Recommended<br />Names
+            </ProfileLinkCard>
+            </ProfileLink>
           </ProfileLinkContainer>
         </div>
       )}

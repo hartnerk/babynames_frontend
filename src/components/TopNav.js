@@ -48,7 +48,7 @@ function TopNav() {
                   <Link to='/matchpage' style={{ color: '#AD588C' }}>Matches</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to='/recomendations' style={{ color: '#AD588C' }}>reocmendations</Link>
+                  <Link to='/recommendations' style={{ color: '#AD588C' }}>Recommendations</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
                   <Link onClick={handelLogout} style={{ color: '#AD588C' }}>Logout</Link>
