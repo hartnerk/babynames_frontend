@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 
 // STYLES
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
-import { ProfileLinkContainer, ProfileLinkCard, ProfileLink } from '../../styles/styledComponents/ProfileLinkCard';
+import { ProfileLinkContainer, ProfileLinkCard, ProfileLink, ProfileCardLogo } from '../../styles/styledComponents/ProfileLinkCard';
+import logo from '../../styles/resources/binkylogo.png'
+import swipe from '../../styles/resources/swipelogo.png'
+import info from '../../styles/resources/infologo.png'
+import connect from '../../styles/resources/connectlogo.png'
+import likes from '../../styles/resources/likelogo.png'
+import prefs from '../../styles/resources/preflogo.png'
+
 
 function UserProfilePage() {
   const [userEmail, setUserEmail] = useState('');
@@ -54,27 +61,32 @@ function UserProfilePage() {
             <ProfileLink to='/preferences'>
               <ProfileLinkCard className='set-prefs'>
                 Set<br />Preferences
-            </ProfileLinkCard>
+            <ProfileCardLogo src={prefs} />
+              </ProfileLinkCard>
             </ProfileLink>
             <ProfileLink to='/swiper'>
               <ProfileLinkCard className='swipe-names'>
                 Swipe<br />Names
-            </ProfileLinkCard>
+                <ProfileCardLogo src={swipe} />
+              </ProfileLinkCard>
             </ProfileLink>
             <ProfileLink to='/liked-names'>
               <ProfileLinkCard className='liked-names'>
                 Your Liked<br />Names
-            </ProfileLinkCard>
+                <ProfileCardLogo src={likes} />
+              </ProfileLinkCard>
             </ProfileLink>
             <ProfileLink to='/matchpage'>
               <ProfileLinkCard className='matched-names'>
                 Your Matched<br />Names
-            </ProfileLinkCard>
+                <ProfileCardLogo src={connect} />
+              </ProfileLinkCard>
             </ProfileLink>
             <ProfileLink to='/recommendations'>
               <ProfileLinkCard className='rec-names'>
                 Recommended<br />Names
-            </ProfileLinkCard>
+                <ProfileCardLogo src={info} />
+              </ProfileLinkCard>
             </ProfileLink>
           </ProfileLinkContainer>
         </div>

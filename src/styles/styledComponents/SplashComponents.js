@@ -111,11 +111,16 @@ const TeamCard = styled.a`
   align-items: center;
   border-radius: 10px;
   padding-bottom: 10px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
 
   &:hover{
     color: white;
     cursor: pointer;
     transform: scale(1.1)
+  }
+
+  &:active {
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
   }
   
   &.darkest {
@@ -149,9 +154,11 @@ const SplashFooter = styled.div`
   width: 100vw;
   background-color: ${({ theme }) => theme.light};
   height: 25px;
-  font-size: 14px;
-  text-align: center;
+  font-size: 12px;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export {
