@@ -74,10 +74,9 @@ const LikedNamesPage = () => {
       body: JSON.stringify({ customName: newName, gender: newGender })
     }
     try {
-      const response = await fetch(`http://localhost:8000/users/add_name/`, init)
-      const data = await response.json()
+      await fetch(`http://localhost:8000/users/add_name/`, init)
       window.location.reload()
-      return data
+      
     } catch (error) {
       alert(error)
     }
@@ -100,7 +99,7 @@ const LikedNamesPage = () => {
           },
           body: JSON.stringify(nameObj)
         }
-        const saveRequest = await fetch(`http://localhost:8000/users/user_info/${userID}/user-likes/${name.id}/`, init)
+        await fetch(`http://localhost:8000/users/user_info/${userID}/user-likes/${name.id}/`, init)
       })
     } catch (error) {
       console.log(error)
@@ -139,7 +138,7 @@ const LikedNamesPage = () => {
         },
         body: JSON.stringify({ customName: e.target.value })
       }
-      const saveRequest = await fetch(`http://localhost:8000/users/deletelikedname/`, init)
+      await fetch(`http://localhost:8000/users/deletelikedname/`, init)
       window.location.reload()
     } catch (error) {
       console.log(error)
