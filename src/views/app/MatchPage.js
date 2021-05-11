@@ -6,7 +6,11 @@ import NameDetails from '../../components/NameDetails'
 
 // STYLESHEETS
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
+<<<<<<< HEAD
+import { LikedNamesContainer, NameListItem, Info, Delete } from '../../styles/styledComponents/NameLists'
+=======
 import { LikedNamesContainer, NameListItem, Info } from '../../styles/styledComponents/NameLists'
+>>>>>>> main
 
 const MatchedNamePage = () => {
   const [loading, setLoading] = useState(true)
@@ -45,6 +49,7 @@ const MatchedNamePage = () => {
 
   useEffect(() => {
     fetchMatchedNameObjs(localStorage.getItem('couple_id'))
+    console.log("USE EFFECT")
   }, [])
 
 
@@ -66,6 +71,7 @@ const MatchedNamePage = () => {
 
           {matchedNames.map((name, index) => {
             return (
+
               <NameListItem className='third'>
                 <div/>
                 {name.baby_name}

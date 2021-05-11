@@ -9,7 +9,7 @@ import { Chart } from '../styles/styledComponents/Chart'
 
 
 function PopChart({name_data}) {
-
+console.log("POP CHART")
 
 
 const ref = useD3(
