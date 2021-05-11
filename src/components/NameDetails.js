@@ -14,20 +14,20 @@ import PopChart from './PopChart'
 
 const loadData = require('../names_data_file.json')
 
-
 function NameDetails({show, setShow, name}) {
     const [relatedNames, setRelatedNames] = useState()
     const [celebrityNames, setCelebrityNames] = useState()
-
-    const nameStats = loadData.filter(x => x.name == name)
+    const [nameStats, setNameStats] = useState()
+    const [loading, setLoading] = useState(true)
+    console.log("NAME DETAILS: ",name)
 
 
     const handleClose = () => setShow(false)
 
+
     async function getRelatedNames(){
         const response = await fetch(`https://www.behindthename.com/api/related.json?name=${name}&usage=eng&key=ja675945445`)
         const data = await response.json()
-        console.log("Related names: ", data.names)
         setRelatedNames(data.names)
     }
 
@@ -40,18 +40,35 @@ function NameDetails({show, setShow, name}) {
         }
         const response = await fetch(`https://api.celebrityninjas.com/v1/search?limit=10&name=${name}`, init)
         const data = await response.json()
-        console.log("Celebrity names: ",data)
         setCelebrityNames(data)
+        setLoading(false)
+    }
+
+    function getNameData(){
+        console.log("GET NAME DATA CALLED")
+        console.log("NAME IS ", name)
+        let filterList = loadData.filter(x => x.name == name)
+        if(filterList[0]){
+            let nameData = filterList[0].data
+            console.log("NAME DATA: ", nameData)
+            setNameStats(nameData)
+            console.log("GET NAME DATA: ",nameStats)
+        } else {
+            console.log("NO DATA WOMP")
+        }
+
     }
 
     useEffect(() => {
+        console.log("USE EFFECT CALLED WITH ", name)
+        getNameData()
         getRelatedNames()
         getCelebrityNames()
-       
-    }, [name])
+    }, [show])
 
     return (
-
+        <div>
+            {loading == false && (
         <Modal show={show}>
         <Modal.Header >
           <Modal.Title>{name}</Modal.Title>
@@ -73,7 +90,7 @@ function NameDetails({show, setShow, name}) {
                 <ListGroup.Item>
                     <strong>Popularity over the decades:</strong>
                     <div>
-                        {show === true && <PopChart name_data={nameStats[0].data}/> }
+                        {nameStats && <PopChart name_data={nameStats}/>}
                     </div>
                 </ListGroup.Item>
             </ListGroup>
@@ -82,7 +99,8 @@ function NameDetails({show, setShow, name}) {
           <Button variant="primary" onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
-
+      )}
+      </div>
     )
 }
 

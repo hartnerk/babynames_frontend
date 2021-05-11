@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 // COMPONENTS
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import NameDetails from '../../components/NameDetails'
+
 
 // STYLESHEETS
 import { ButtonGroup, Button } from 'react-bootstrap'
@@ -15,6 +17,11 @@ const LikedNamesPage = () => {
   const [likedNames, setLikedNames] = useState([])
   const [newName, setNewName] = useState('')
   const [newGender, setNewGender] = useState('')
+  const [babyName, setBabyName] = useState()
+  const [show, setShow] = useState(false)
+
+  const handleShow = () => setShow(true)
+
 
   const fetchNameFromID = async (nameID) => {
     try {
@@ -157,6 +164,8 @@ const LikedNamesPage = () => {
   } else {
     return (
       <div>
+        <NameDetails show={show} setShow={setShow} name={babyName}></NameDetails>
+
         <AddNameFormContainer>
           <AddNameForm onSubmit={onSubmitNewName}>
             <AddNameTitle>add a new name :</AddNameTitle>
@@ -188,6 +197,7 @@ const LikedNamesPage = () => {
                 {likedNames.map((name, index) => {
                   return (
                     <Draggable key={index} index={index} draggableId={index.toString()}>
+
                       {(provided) => (
                         <NameListItem
                           {...provided.draggableProps}
@@ -203,7 +213,10 @@ const LikedNamesPage = () => {
                         >
                           <Num>{index + 1}.</Num> {name.baby_name}
                           <div>
-                            <Info>i</Info>
+                            <Info onClick={() => {
+                                    setBabyName(name.baby_name)
+                                    handleShow()
+                                  }}>i</Info>
                             <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
                           </div>
                         </NameListItem>
