@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 
 
 // COMPONENTS
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
 import { useState } from 'react'
 
 // STYLES
 import { AuthContainer } from '../../styles/styledComponents/PreferencesPage'
+import { PageTitle } from '../../styles/styledComponents/PageTitle'
+import { LikedNamesContainer, NameListItem, Info } from '../../styles/styledComponents/NameLists'
+
 
 function RecomendedPage({ name }) {
   const [names, setNames] = useState([])

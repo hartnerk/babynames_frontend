@@ -6,7 +6,7 @@ import NameDetails from '../../components/NameDetails'
 
 // STYLESHEETS
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
-import { LikedNamesContainer, NameListItem } from '../../styles/styledComponents/NameLists'
+import { LikedNamesContainer, NameListItem, Info } from '../../styles/styledComponents/NameLists'
 
 const MatchedNamePage = () => {
   const [loading, setLoading] = useState(true)
@@ -75,10 +75,16 @@ const MatchedNamePage = () => {
 
           {matchedNames.map((name, index) => {
             return (
-              <NameListItem onClick={() => {
-                setBabyName(name.baby_name)
-                handleShow()
-              }}><div/>{name.baby_name}<div/></NameListItem>
+              <NameListItem className='third'>
+                <div/>
+                {name.baby_name}
+                <Info
+                onClick={() => {
+                  setBabyName(name.baby_name)
+                  handleShow()
+                }}
+                >i</Info>
+              </NameListItem>
             )
           })}
         </LikedNamesContainer>
