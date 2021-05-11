@@ -42,20 +42,11 @@ const MatchedNamePage = () => {
       alert(error)
     }
   }
-  //console.log( fetchMatchedNameObjs.all())
-  // ** Hard coded couple ID assuming state/props is being passed from somewhere else in app
+
   useEffect(() => {
     fetchMatchedNameObjs(localStorage.getItem('couple_id'))
   }, [])
 
-
-  const handleOnDragEnd = (result) => {
-    if(!result.destination) return
-    const items = Array.from(matchedNames)
-    const [reorderedItem] = items.splice(result.source.index, 1)
-    items.splice(result.destination.index, 0, reorderedItem)
-    setMatchedNames(items)
-  }
 
   if(loading) {
     return (
