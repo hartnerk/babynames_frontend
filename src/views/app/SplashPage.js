@@ -30,7 +30,7 @@ const SplashPage = () => {
         </div>
       </CoverNav>
       <SplashCoverPhoto>
-        <SpashTag>Placeholder for a super cool tagline.</SpashTag>
+        <SpashTag>Swiping babies has never been easier.</SpashTag>
       </SplashCoverPhoto>
       <SplashPageSection>
         <PageTitle className='splash-why'>Why Baby Swiper?</PageTitle>

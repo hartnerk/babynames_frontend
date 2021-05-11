@@ -73,6 +73,10 @@ const Info = styled.button`
   margin-right: 7.5px;
   font-style: italic;
 
+  &.add {
+    padding: 0px 8px;
+  }
+
   &:hover {
     background-color: ${({ theme }) => theme.light};
   }
@@ -109,6 +113,8 @@ const OrderSaveBtn = styled.button`
     box-shadow: none !important;
   }
 `
+
+
 
 export {
   LikedNamesContainer,
