@@ -66,7 +66,7 @@ const SwiperPage = (props) => {
       const data = await response.json()
       console.log(data)
       let names_array = shuffle(data)
-      names_array = names_array.slice(0,100)
+      names_array = names_array.slice(0, 100)
       setNames(names_array)
       setLoading(false)
     } catch (error) {
@@ -104,7 +104,7 @@ const SwiperPage = (props) => {
       console.log('POST to user liked names: ', soloResponse)
       return soloResponse
     } catch (error) {
-    alert(error)
+      alert(error)
     }
   }
 
@@ -125,7 +125,7 @@ const SwiperPage = (props) => {
         }
       })
       let checkResponse = await checkRequest.json()
-      for (let i=0; i < checkResponse.length; i++) {
+      for (let i = 0; i < checkResponse.length; i++) {
         if (checkResponse[i]['name_id'] === newLikedName1['name_id']) {
           setMatched(true)
           newLikedName1['matched'] = true;
@@ -161,7 +161,7 @@ const SwiperPage = (props) => {
         body: JSON.stringify(newLikedName2)
       })
       const response2 = await request2.json()
-      console.log('POST to user liked names: ', response2)     
+      console.log('POST to user liked names: ', response2)
 
       return response1
     } catch (error) {
@@ -170,20 +170,20 @@ const SwiperPage = (props) => {
   }
 
   const saveDislikedName = async (nameID, coupleID, userID) => {
-      const newLikedName2 = { // POST TO USER DISLIKED NAMES
-        user_id: userID,
-        name_id: nameID
-      }
-      const request2 = await fetch(`http://localhost:8000/users/user_info/${userID}/user-dislikes/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("access_token")}`
-        },
-        body: JSON.stringify(newLikedName2)
-      })
-      const response2 = await request2.json()
-      console.log('POST to user disliked names: ', response2)
+    const newLikedName2 = { // POST TO USER DISLIKED NAMES
+      user_id: userID,
+      name_id: nameID
+    }
+    const request2 = await fetch(`http://localhost:8000/users/user_info/${userID}/user-dislikes/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("access_token")}`
+      },
+      body: JSON.stringify(newLikedName2)
+    })
+    const response2 = await request2.json()
+    console.log('POST to user disliked names: ', response2)
   }
 
 
