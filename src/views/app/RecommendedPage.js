@@ -35,18 +35,27 @@ function RecomendedPage({ name }) {
     }
   }
 
-  const renderRecomendations = names.map((name, index) => {
+  const renderRecommendations = names.map((name, index) => {
     return (
-      <div>
-        <h1> {name.baby_name} , </h1>
-      </div>
+      <NameListItem className='fifth'>
+        <div />
+        {name.baby_name}
+        <Info className='add'>
+          +
+        </Info>
+      </NameListItem>
     )
   })
 
   return (
-    <AuthContainer>
-      {renderRecomendations}
-    </AuthContainer>
+    <div>
+      <PageTitle>Your Recommendations</PageTitle>
+      <p style={{ fontStyle: 'italic', color: '#C96984' }}>Based on your liked baby names.</p>
+      <LikedNamesContainer>
+
+        {renderRecommendations}
+      </LikedNamesContainer>
+    </div >
   )
 }
 
