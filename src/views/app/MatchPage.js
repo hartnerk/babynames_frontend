@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
+// COMPONENTS
+import NameDetails from '../../components/NameDetails'
+
+
 // STYLESHEETS
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
 import { LikedNamesContainer, NameListItem } from '../../styles/styledComponents/NameLists'
@@ -7,13 +11,16 @@ import { LikedNamesContainer, NameListItem } from '../../styles/styledComponents
 const MatchedNamePage = () => {
   const [loading, setLoading] = useState(true)
   const [matchedNames, setMatchedNames] = useState([])
+  const [show, setShow] = useState(false)
+  const [babyName, setBabyName] = useState()
+
+  const handleShow = () => setShow(true)
+
 
   const fetchMatchedNameFromID = async (nameID) => {
     try {
       const response = await fetch(`http://localhost:8000/users/baby-names/${nameID}/`)
-      console.log("!!!!! RESPONSE !!!!!", response)
       const data = await response.json()
-      console.log("!!!! data !!!!!    ",data)
       return data
     } catch (error) {
       alert(error)
@@ -36,7 +43,6 @@ const MatchedNamePage = () => {
     }
   }
   //console.log( fetchMatchedNameObjs.all())
-  console.log(matchedNames, "!!!!!!!!matchedNames!!!!!!")
   // ** Hard coded couple ID assuming state/props is being passed from somewhere else in app
   useEffect(() => {
     fetchMatchedNameObjs(localStorage.getItem('couple_id'))
@@ -64,9 +70,15 @@ const MatchedNamePage = () => {
       <div>
         <PageTitle className='likes'>Your Matched Names</PageTitle>
         <LikedNamesContainer>
+
+          <NameDetails show={show} setShow={setShow} name={babyName}></NameDetails>
+
           {matchedNames.map((name, index) => {
             return (
-              <NameListItem><div/>{name.baby_name}<div/></NameListItem>
+              <NameListItem onClick={() => {
+                setBabyName(name.baby_name)
+                handleShow()
+              }}><div/>{name.baby_name}<div/></NameListItem>
             )
           })}
         </LikedNamesContainer>

@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 
 
 // COMPONENTS
-import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
-import { useState } from 'react'
+import {Modal, Button} from 'react-bootstrap'
+
 
 // STYLES
 import { DetailsForm } from '../styles/styledComponents/NameDetails'
@@ -13,13 +13,16 @@ import PopChart from './PopChart'
 
 
 const loadData = require('../names_data_file.json')
-const name = "Liam"
-const nameStats = loadData.filter(x => x.name == name)
 
 
-function NameDetailsPage() {
+function NameDetails({show, setShow, name}) {
     const [relatedNames, setRelatedNames] = useState()
     const [celebrityNames, setCelebrityNames] = useState()
+
+    const nameStats = loadData.filter(x => x.name == name)
+
+
+    const handleClose = () => setShow(false)
 
     async function getRelatedNames(){
         const response = await fetch(`https://www.behindthename.com/api/related.json?name=${name}&usage=eng&key=ja675945445`)
@@ -45,41 +48,42 @@ function NameDetailsPage() {
         getRelatedNames()
         getCelebrityNames()
        
-    }, [])
+    }, [name])
 
     return (
-        <AuthContainer>
-            <Card>
-                <Card.Body>
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>
-                            <Card.Title>
-                                {name}
-                            </Card.Title>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <strong>Related Names: </strong>
-                            <div>
-                                {relatedNames && relatedNames.map((item, index) => <span>{(index ? ', ': '') + item}</span>)}
-                            </div> 
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <strong>Celebrities with the name {name}:</strong>
-                            <div>
-                                {celebrityNames && celebrityNames.map((item, index) => <span>{(index ? ', ': '') + item.name}</span>)}
-                            </div>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <strong>Popularity over the decades:</strong>
-                            <div>
-                                <PopChart name_data={nameStats[0].data}/>
-                            </div>
-                        </ListGroup.Item>
-                    </ListGroup>
-                </Card.Body>
-            </Card>
-        </AuthContainer>
+
+        <Modal show={show}>
+        <Modal.Header >
+          <Modal.Title>{name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ListGroup>
+                <ListGroup.Item>
+                    <strong>Related Names: </strong>
+                    <div>
+                        {relatedNames && relatedNames.map((item, index) => <span>{(index ? ', ': '') + item}</span>)}
+                    </div> 
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <strong>Celebrities with the name {name}:</strong>
+                    <div>
+                        {celebrityNames && celebrityNames.map((item, index) => <span>{(index ? ', ': '') + item.name}</span>)}
+                    </div>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <strong>Popularity over the decades:</strong>
+                    <div>
+                        {show === true && <PopChart name_data={nameStats[0].data}/> }
+                    </div>
+                </ListGroup.Item>
+            </ListGroup>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+
     )
 }
 
-export default NameDetailsPage
+export default NameDetails
