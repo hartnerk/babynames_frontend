@@ -76,12 +76,15 @@ function UserProfilePage() {
                 <ProfileCardLogo src={likes} />
               </ProfileLinkCard>
             </ProfileLink>
+            { localStorage.couple_id != 'undefined' ?
             <ProfileLink to='/matchpage'>
               <ProfileLinkCard className='matched-names'>
                 Your Matched<br />Names
                 <ProfileCardLogo src={connect} />
               </ProfileLinkCard>
             </ProfileLink>
+            : ''
+            } 
             <ProfileLink to='/recommendations'>
               <ProfileLinkCard className='rec-names'>
                 Recommended<br />Names

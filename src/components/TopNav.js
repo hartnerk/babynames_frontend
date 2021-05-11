@@ -10,6 +10,7 @@ import { NavDropdown } from 'react-bootstrap'
 function TopNav() {
   const [names, setNames] = useState([])
   const [isAuth, setIsAuth] = useState(false)
+  
 
   useEffect(() => {
     if (localStorage.getItem('access_token') !== null) {
@@ -45,9 +46,15 @@ function TopNav() {
                 <NavDropdown.Item>
                   <Link to='/liked-names' style={{ color: '#AD588C' }}>Liked Names</Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link to='/matchpage' style={{ color: '#AD588C' }}>Matches</Link>
-                </NavDropdown.Item>
+                
+                  {
+                  localStorage.couple_id != 'undefined' ?
+                  <NavDropdown.Item>
+                  <Link to='/matchpage' style={{ color: '#AD588C' }}>Matches</Link> 
+                  </NavDropdown.Item> : 
+                  ''
+                  }
+                
                 <NavDropdown.Item>
                   <Link to='/recommendations' style={{ color: '#AD588C' }}>Recommendations</Link>
                 </NavDropdown.Item>
