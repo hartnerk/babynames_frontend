@@ -43,12 +43,35 @@ const Num = styled.div`
 `
 
 const Delete = styled.button`
-  background-color: ${({ theme }) => theme.lightest};
+  background-color: ${({ theme }) => theme.dark};
   border: none;
   border-radius: 10px;
   color: ${({ theme }) => theme.page};
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
   padding: 0px 11px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.darkest};
+  }
+  &:active {
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+  }
+  &:focus {
+    outline: none !important;
+    outline-style: none !important;
+    box-shadow: none !important;
+  }
+`
+
+const Info = styled.button`
+  background-color: ${({ theme }) => theme.lightest};
+  border: none;
+  border-radius: 10px;
+  color: ${({ theme }) => theme.darkest};
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+  padding: 0px 14px;
+  margin-right: 7.5px;
+  font-style: italic;
 
   &:hover {
     background-color: ${({ theme }) => theme.light};
@@ -63,8 +86,9 @@ const Delete = styled.button`
   }
 `
 
+
 const OrderSaveBtn = styled.button`
-  background-color: ${({ theme }) => theme.lightest};
+  background-color: ${({ theme }) => theme.dark};
   border: none;
   border-radius: 10px;
   color: ${({ theme }) => theme.page};
@@ -74,7 +98,7 @@ const OrderSaveBtn = styled.button`
   font-size: 18px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.light};
+    background-color: ${({ theme }) => theme.darker};
   }
   &:active {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
@@ -92,4 +116,5 @@ export {
   Num,
   Delete,
   OrderSaveBtn,
+  Info
 }

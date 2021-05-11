@@ -166,7 +166,7 @@ function LoginPage({ history }) {
           <LoginPageContainer>
             <div></div>
             <LoginLeft>
-              <img src={logo} className='login-logo' />
+              <img src={logo} alt='logo' className='login-logo' />
               <LeftText>
                 swipe.
                 <br />

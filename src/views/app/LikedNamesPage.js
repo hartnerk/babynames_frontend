@@ -4,16 +4,17 @@ import React, { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // STYLESHEETS
-import { ListGroup, ButtonGroup } from 'react-bootstrap'
-import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton, GenderButton } from '../../styles/styledComponents/AddNameForm'
+import { ButtonGroup, Button } from 'react-bootstrap'
+import { AddNameFormContainer, AddNameTitle, AddNameForm, AddNameField, AddButton } from '../../styles/styledComponents/AddNameForm'
 import { PageTitle } from '../../styles/styledComponents/PageTitle'
-import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn } from '../../styles/styledComponents/NameLists'
+import { LikedNamesContainer, NameListItem, Num, Delete, OrderSaveBtn, Info } from '../../styles/styledComponents/NameLists'
+
 
 const LikedNamesPage = () => {
   const [loading, setLoading] = useState(true)
   const [likedNames, setLikedNames] = useState([])
-  const [newName, setnewName] = useState('')
-  const [newGender, setnewGender] = useState('')
+  const [newName, setNewName] = useState('')
+  const [newGender, setNewGender] = useState('')
 
   const fetchNameFromID = async (nameID) => {
     try {
@@ -138,6 +139,15 @@ const LikedNamesPage = () => {
     }
   }
 
+  const MaleButton = {
+    backgroundColor: '#ECCF8B',
+    borderRadius: '10px 0 0 10px'
+  }
+
+  const FemaleButton = {
+    backgroundColor: '#ECCF8B',
+    borderRadius: '0 10px 10px 0'
+  }
 
 
   if (loading) {
@@ -153,18 +163,17 @@ const LikedNamesPage = () => {
             <AddNameField
               placeholder='new name'
               name='newName'
-              type='text'
               value={newName}
               required
-              onChange={e => setnewName(e.target.value)}
+              onChange={e => setNewName(e.target.value)}
             ></AddNameField>
             <ButtonGroup
               aria-label="Basic example"
               name='gender'
-              onChange={e => setnewGender(e.target.value)}
+              onClick={e => setNewGender(e.target.value)}
             >
-              <GenderButton value='m' variant="secondary" className='male'>Male</GenderButton>
-              <GenderButton value='f' variant="secondary" className='female'>Female</GenderButton>
+              <Button style={MaleButton} value='m' variant="secondary" className='male'>Male</Button>
+              <Button style={FemaleButton} value='f' variant="secondary" className='female'>Female</Button>
             </ButtonGroup>
             <div />
             <AddButton type='submit'>add</AddButton>
@@ -193,7 +202,10 @@ const LikedNamesPage = () => {
                           `}
                         >
                           <Num>{index + 1}.</Num> {name.baby_name}
-                          <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
+                          <div>
+                            <Info>i</Info>
+                            <Delete value={name.baby_name} onClick={(e) => deleteName(e)}>x</Delete>
+                          </div>
                         </NameListItem>
                       )}
                     </Draggable>

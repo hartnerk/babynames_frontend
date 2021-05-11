@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 
 const ProfileLinkContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   
 
   @media(max-width: 900px) {
@@ -16,21 +17,17 @@ const ProfileLinkCard = styled.div`
   height: 250px;
   width: 250px;
   border-radius: 25px;
-  margin: 10vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
+  margin: 2vh;
   font-size: 28px;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
 
-  @media(max-width: 900px) {
-    margin: 2vh;
-  }
 
   &:hover {
-    height: 260px;
-    width: 260px;
-    font-size: 30px;
+    transform: scale(1.1)
   }
 
   &:active {
@@ -44,7 +41,13 @@ const ProfileLinkCard = styled.div`
     background: ${({ theme }) => theme.dark};
   }
   &.liked-names {
+    background: ${({ theme }) => theme.darkest};
+  }
+  &.matched-names {
     background: ${({ theme }) => theme.lightest};
+  }
+  &.rec-names {
+    background: ${({ theme }) => theme.light};
   }
 `
 
@@ -57,8 +60,14 @@ const ProfileLink = styled(Link)`
   }
 `
 
+const ProfileCardLogo = styled.img`
+  height: 75px;
+  margin-top: 15px;
+`
+
 export {
   ProfileLinkContainer,
   ProfileLinkCard,
-  ProfileLink
+  ProfileLink,
+  ProfileCardLogo
 }

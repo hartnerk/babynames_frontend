@@ -6,11 +6,17 @@ const PageTitle = styled.div`
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 
   &.profile {
-    margin-top: 15vh;
+    margin: 15vh 0 10vh 0;
   }
 
   &.likes {
     margin-top: 5vh;
+  }
+
+  &.splash-why {
+    margin-top: 2vh;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
 `
 
