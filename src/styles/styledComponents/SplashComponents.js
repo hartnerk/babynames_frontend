@@ -47,7 +47,7 @@ const CoverButton = styled(Link)`
 
 const SplashCoverPhoto = styled.div`
   background-image: url(${CoverPhoto});
-  background-position: right 0 bottom -75px;
+  background-repeat: no-repeat;
   height: 92vh;
   margin-top: 65px;
   background-size: cover;
@@ -56,10 +56,10 @@ const SplashCoverPhoto = styled.div`
   align-items: center;
   box-shadow: 25px 0 50px 0 white inset, -25px 0 50px 0 white inset, 0 -25px 25px white inset;
 
-  &img {
-    width: 100vw;
-    
+  @media(max-width: 780px) {
+    background-position: right 0 bottom 0px;
   }
+
 `
 
 const SpashTag = styled.div`
