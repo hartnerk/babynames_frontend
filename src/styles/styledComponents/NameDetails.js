@@ -10,5 +10,5 @@ const DetailsForm = styled.form`
 `
 
 export {
-    DetailsForm,
+  DetailsForm,
 }
