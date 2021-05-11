@@ -28,6 +28,7 @@ function RecomendedPage({name}) {
           }
           const response = await fetch(`http://localhost:8000/users/recomendations`, init)
           const data = await response.json()
+          console.log('this is the recomendation: ', data)
           setNames(data)
         } catch (error) {
           alert(error)

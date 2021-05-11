@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import ReactFacebookLogin from 'react-facebook-login'
 
 
 // ** Image is a little fuzzy.  Would like to try to fix that. **
@@ -52,6 +53,14 @@ const SwiperFormField = styled.input`
   }
 `
 
+const FacbookFormButton = styled(ReactFacebookLogin)`
+  .btnFacebook {
+    background-color: ${({ theme }) => theme.lightest} !important;
+    border-color: ${({ theme }) => theme.darkest} !important;
+    color:red;
+  }
+`
+
 const SwiperFormButton = styled.button`
   background-color: ${({ theme }) => theme.dark};
   color: ${({ theme }) => theme.page};
@@ -100,4 +109,5 @@ export {
   SwiperFormButton,
   SwiperRedirect,
   SwiperLink,
+  FacbookFormButton,
 }
